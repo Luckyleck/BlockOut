@@ -6,7 +6,5 @@ import Board from "./scripts/board"
 //     new Example(main);
 // });
 
-canvas.width = Math.floor(0.75 * window.innerWidth);
-canvas.height = Math.floor(0.8 * window.innerHeight);
 
 console.log('hello')
