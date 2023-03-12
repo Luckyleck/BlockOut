@@ -7,4 +7,5 @@ import Game from "./scripts/game.js"
 // });
 
 
-console.log('hello')
+
+// console.log('hello')

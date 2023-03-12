@@ -2,9 +2,9 @@ class Tile {
 
     static size = 50;
 
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
+    constructor(row, col) {
+        this.row = row;
+        this.col = col;
         this.size = Tile.size;
         this.health = 3;
         this.visible = true;

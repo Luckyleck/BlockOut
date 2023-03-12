@@ -27,6 +27,12 @@ class Board {
         ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
     ]
 
+    static mapWidth = Board.map[0].length * Tile.size
+    static mapHeight = Board.map.length * Tile.size
+    static playFieldWidth = Board.mapWidth - (Tile.size * 2)
+    static playFieldHeight = Board.mapHeight - (Tile.size * 2)
+
+
     constructor() {
 
         this.tiles = []
@@ -46,6 +52,9 @@ class Board {
                 }
             }
         }
+
+        
+
     }
 
     draw() {
@@ -57,20 +66,27 @@ class Board {
             row.forEach((tile) => {
                 if (tile instanceof Tile) {
                     c.fillStyle = 'green';
-                    c.fillRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                    c.fillRect(startX + (tile.row * tile.size), startY + (tile.col * tile.size), tile.size, tile.size);
                     c.lineWidth = 2;
                     c.strokeStyle = 'black';
-                    c.strokeRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                    c.strokeRect(startX + (tile.row * tile.size), startY + (tile.col * tile.size), tile.size, tile.size);
                 } else {
                     c.fillStyle = 'blue';
-                    c.fillRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                    c.fillRect(startX + (tile.row * tile.size), startY + (tile.col * tile.size), tile.size, tile.size);
                     c.lineWidth = 2;
                     c.strokeStyle = 'black';
-                    c.strokeRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                    c.strokeRect(startX + (tile.row * tile.size), startY + (tile.col * tile.size), tile.size, tile.size);
                 }
             })
         })
     }
+
+    // getSurroundingBlocks
+
+    // checkPlayerDirection
+
+    // updateSurroundBlock(s)
+
 }
 
 let mouse = {
@@ -82,26 +98,26 @@ window.addEventListener('mousemove',
     function (event) {
         mouse.x = event.x;
         mouse.y = event.y;
-        console.log(mouse)
+        // console.log(mouse)
     })
 
-// window.addEventListener("mousemove", function (event) {
-//     const canvasStartX = canvas.width / 4;
-//     const canvasStartY = canvas.height / 8;
-//     const tileWidth = Board.map[0][0].size;
-//     const tileHeight = Board.map[0][0].size;
+window.addEventListener("mousemove", function (event) {
+    const canvasStartX = canvas.width / 4;
+    const canvasStartY = canvas.height / 8;
+    const tileWidth = Board.map[0][0].size;
+    const tileHeight = Board.map[0][0].size;
 
-//     const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-//     const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
-//     const tileX = Math.floor((mouseX - canvasStartX) / tileWidth);
-//     const tileY = Math.floor((mouseY - canvasStartY) / tileHeight);
+    const tileX = Math.floor((mouseX - canvasStartX) / tileWidth);
+    const tileY = Math.floor((mouseY - canvasStartY) / tileHeight);
 
-//     if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
-//       const tile = Board.map[tileY][tileX];
-//       console.log(tile);
-//     }
-// });
+    if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
+      const tile = Board.map[tileY][tileX];
+    //   console.log(tile);
+    }
+});
 
 export default Board;
 
