@@ -6,22 +6,16 @@ const c = canvas.getContext('2d')
 
 class Player {
 
-    
-
     constructor(x, y) {
         this.x = x
         this.y = y
         this.dx;
         this.dy;
         this.radius = 15
-        // this.row = Math.floor(Board.playFieldWidth/this.x)
-        // this.col = Math.floor(Board.playFieldHeight/this.y)
-        this.row = Math.floor((this.x - (Board.canvasStartX + 50)) / Tile.size)
-        this.col = Math.floor((this.y - (Board.canvasStartY + 50)) / Tile.size)
-
-
-        // const tileX = Math.floor((mouseX - canvasStartX) / tileWidth);
-        // const tileY = Math.floor((mouseY - canvasStartY) / tileHeight);
+        this.row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1) // row is y
+        this.col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1) // col is x
+        // this.row = this.currentTile[0]
+        // this.row = this.currentTile[1]
 
         let lastKey = ''
 
@@ -81,9 +75,9 @@ class Player {
     }
 
     currentTile() {
-        let row = Math.floor(Board.playFieldWidth/this.x)
-        let col = Math.floor(Board.playFieldHeight/this.y)
-        // console.log(`row: ${row} col: ${col}`)
+        let row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1) // row is y
+        let col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1) // col is x
+        console.log([row,col])
     }
 
     // update() {

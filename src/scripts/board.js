@@ -27,19 +27,27 @@ class Board {
         ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
     ]
 
-    static canvasStartX = canvas.width / 4;
-    static canvasStartY = canvas.height / 8;
 
+    
+    // Map total Width and Height
     static mapWidth = Board.map[0].length * Tile.size
     static mapHeight = Board.map.length * Tile.size
+    
+    // Map Start x and y
+    static canvasStartX = canvas.width / 4; //300
+    static canvasStartY = canvas.height / 8; //100
+    
+    // Playfield Width and Height
     static playFieldWidth = Board.mapWidth - (Tile.size * 2)
     static playFieldHeight = Board.mapHeight - (Tile.size * 2)
 
+    // Playfield Start x and y
+    static playFieldStartX = Board.canvasStartX + Tile.size;
+    static playFieldStartY = Board.canvasStartY + Tile.size;
+
 
     constructor() {
-
-        this.tiles = []
-
+        // this.tiles = []
         for (let i = 0; i < Board.map.length; i++) {
             for (let j = 0; j < Board.map[i].length; j++) {
                 if (Board.map[i][j] === " ") {
@@ -55,9 +63,6 @@ class Board {
                 }
             }
         }
-
-        
-
     }
 
     draw() {

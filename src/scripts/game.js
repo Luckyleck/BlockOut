@@ -91,24 +91,10 @@ function animate() {
     c.clearRect(0,0, canvas.width, canvas.height)
     board.draw();
     player.draw();
-    // player.currentTile();
+    player.currentTile();
     // console.log('row ' + player.row)
     // console.log('col ' + player.col)
 }
-
-const borderSize = 50;
-const tileSize = 50;
-
-const boardX = Board.canvasStartX + borderSize;
-const boardY = Board.canvasStartY + borderSize;
-
-const playerX = player.x - boardX;
-const playerY = player.y - boardY;
-
-const tileRow = Math.floor(playerY / tileSize) + 1;
-const tileCol = Math.floor(playerX / tileSize) + 1;
-
-console.log(`Player is on row ${tileRow} and col ${tileCol}`);
 
 animate();
 
