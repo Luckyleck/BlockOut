@@ -7,7 +7,9 @@ const c = canvas.getContext('2d')
 const board = new Board;
 Board.map.forEach(ele => console.log(ele))
 // const player = new Player(375, 175)
-const player = new Player(425, 225)
+console.log(Board.canvasStartX)
+console.log(Board.canvasStartY)
+const player = new Player(575, 275)
 
 
 
@@ -79,10 +81,10 @@ const player = new Player(425, 225)
 //         // console.log(keys.s.pressed)
 // })
 
-console.log(Board.mapWidth)
-console.log(Board.mapHeight)
-console.log(Board.playFieldWidth)
-console.log(Board.playFieldHeight)
+// console.log(Board.mapWidth)
+// console.log(Board.mapHeight)
+// console.log(Board.playFieldWidth)
+// console.log(Board.playFieldHeight)
 
 function animate() {
     window.requestAnimationFrame(animate)
@@ -90,9 +92,23 @@ function animate() {
     board.draw();
     player.draw();
     // player.currentTile();
-    console.log('row ' + player.row)
-    console.log('col ' + player.col)
+    // console.log('row ' + player.row)
+    // console.log('col ' + player.col)
 }
+
+const borderSize = 50;
+const tileSize = 50;
+
+const boardX = Board.canvasStartX + borderSize;
+const boardY = Board.canvasStartY + borderSize;
+
+const playerX = player.x - boardX;
+const playerY = player.y - boardY;
+
+const tileRow = Math.floor(playerY / tileSize) + 1;
+const tileCol = Math.floor(playerX / tileSize) + 1;
+
+console.log(`Player is on row ${tileRow} and col ${tileCol}`);
 
 animate();
 

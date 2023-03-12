@@ -1,9 +1,12 @@
 import Board from "./board.js"
+import Tile from "./tile.js"
 
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
 
 class Player {
+
+    
 
     constructor(x, y) {
         this.x = x
@@ -11,8 +14,14 @@ class Player {
         this.dx;
         this.dy;
         this.radius = 15
-        this.row = Math.floor(Board.playFieldWidth/this.x)
-        this.col = Math.floor(Board.playFieldHeight/this.y)
+        // this.row = Math.floor(Board.playFieldWidth/this.x)
+        // this.col = Math.floor(Board.playFieldHeight/this.y)
+        this.row = Math.floor((this.x - (Board.canvasStartX + 50)) / Tile.size)
+        this.col = Math.floor((this.y - (Board.canvasStartY + 50)) / Tile.size)
+
+
+        // const tileX = Math.floor((mouseX - canvasStartX) / tileWidth);
+        // const tileY = Math.floor((mouseY - canvasStartY) / tileHeight);
 
         let lastKey = ''
 

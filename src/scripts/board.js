@@ -27,6 +27,9 @@ class Board {
         ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
     ]
 
+    static canvasStartX = canvas.width / 4;
+    static canvasStartY = canvas.height / 8;
+
     static mapWidth = Board.map[0].length * Tile.size
     static mapHeight = Board.map.length * Tile.size
     static playFieldWidth = Board.mapWidth - (Tile.size * 2)
@@ -118,6 +121,9 @@ window.addEventListener("mousemove", function (event) {
     //   console.log(tile);
     }
 });
+
+
+
 
 export default Board;
 
