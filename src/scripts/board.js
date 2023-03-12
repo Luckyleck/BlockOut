@@ -1,5 +1,6 @@
 import Tile from './tile.js'
 import Boundary from './boundary.js'
+import Player from './player.js'
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d")
@@ -54,12 +55,19 @@ class Board {
 
         Board.map.forEach((row) => {
             row.forEach((tile) => {
-                console.log(tile)
-                c.fillStyle = 'green';
-                c.fillRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
-                c.lineWidth = 2;
-                c.strokeStyle = 'black';
-                c.strokeRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                if (tile instanceof Tile) {
+                    c.fillStyle = 'green';
+                    c.fillRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                    c.lineWidth = 2;
+                    c.strokeStyle = 'black';
+                    c.strokeRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                } else {
+                    c.fillStyle = 'blue';
+                    c.fillRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                    c.lineWidth = 2;
+                    c.strokeStyle = 'black';
+                    c.strokeRect(startX + (tile.x * tile.size), startY + (tile.y * tile.size), tile.size, tile.size);
+                }
             })
         })
     }
@@ -75,12 +83,25 @@ window.addEventListener('mousemove',
         mouse.x = event.x;
         mouse.y = event.y;
         console.log(mouse)
-})
+    })
 
+// window.addEventListener("mousemove", function (event) {
+//     const canvasStartX = canvas.width / 4;
+//     const canvasStartY = canvas.height / 8;
+//     const tileWidth = Board.map[0][0].size;
+//     const tileHeight = Board.map[0][0].size;
 
-const board = new Board;
-board.draw();
+//     const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+//     const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
+//     const tileX = Math.floor((mouseX - canvasStartX) / tileWidth);
+//     const tileY = Math.floor((mouseY - canvasStartY) / tileHeight);
+
+//     if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
+//       const tile = Board.map[tileY][tileX];
+//       console.log(tile);
+//     }
+// });
 
 export default Board;
 
