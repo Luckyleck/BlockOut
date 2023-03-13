@@ -1,5 +1,6 @@
 import Board from './board.js'
 import Player from './player.js'
+import Playertwo from './playertwo.js'
 
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
@@ -10,6 +11,7 @@ Board.map.forEach(ele => console.log(ele))
 console.log(Board.canvasStartX)
 console.log(Board.canvasStartY)
 const player = new Player(575, 275)
+const player2 = new Playertwo(625, 225)
 
 
 
@@ -88,6 +90,7 @@ const player = new Player(575, 275)
 
 // board.draw();
 
+
 function animate() {
     window.requestAnimationFrame(animate)
     c.clearRect(0,0, canvas.width, canvas.height)
@@ -97,7 +100,14 @@ function animate() {
     } else {
         c.font = "200px Georgia";
         c.fillStyle = "Orange"
-        c.fillText("You Lose!", canvas.width/4, canvas.height/2);
+        c.fillText("Blue Wins!", canvas.width/4, canvas.height/2);
+    }
+    if (player2.alive) {
+      player2.draw();
+    } else {
+      c.font = "200px Georgia";
+      c.fillStyle = "Orange";
+      c.fillText("Red Wins!", canvas.width / 4, canvas.height / 2);
     }
     // player.isDead();
     console.log(player.alive)
