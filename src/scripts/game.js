@@ -87,13 +87,20 @@ const player = new Player(575, 275)
 // console.log(Board.playFieldHeight)
 
 // board.draw();
+
 function animate() {
     window.requestAnimationFrame(animate)
     c.clearRect(0,0, canvas.width, canvas.height)
     board.draw();
-    player.draw();
+    if (player.alive) {
+        player.draw();
+    } else {
+        c.font = "200px Georgia";
+        c.fillStyle = "Orange"
+        c.fillText("You Lose!", canvas.width/4, canvas.height/2);
+    }
     // player.isDead();
-    // console.log(this.alive)
+    console.log(player.alive)
     // console.log(player.lastKey)
  
     // player.currentTile();
@@ -101,6 +108,8 @@ function animate() {
     // console.log('col ' + player.col)
 }
 
+player.currentTile();
+player.getPlayerTile();
 animate();
 // player.getTile();
 // if (!player.alive) {

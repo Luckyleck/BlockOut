@@ -400,7 +400,7 @@ class Board {
                   c.strokeStyle = 'black';
                   c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
               } else if (tile instanceof Boundary) {
-                  c.fillStyle = 'black';
+                  c.fillStyle = 'grey';
                   c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
                   c.lineWidth = 2;
                   c.strokeStyle = 'black';

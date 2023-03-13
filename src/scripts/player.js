@@ -43,13 +43,19 @@ class Player {
                     if (this.isTile(this.x, this.y - 50)) {
                         this.y -= 50
                     }
+                    if (this.alive && this.isDead()) {
+                        this.alive = false
+                    }
                     break
                 case 'a':
                     this.keys.a.pressed = true
                     this.lastKey = "a";
                     if (this.isTile(this.x - 50, this.y)) {
                         this.x -= 50
-                    } 
+                    }
+                    if (this.alive && this.isDead()) {
+                      this.alive = false;
+                    }
                     break
                 case 's':
                     this.keys.s.pressed = true
@@ -57,13 +63,19 @@ class Player {
                     if (this.isTile(this.x, this.y + 50)) {
                         this.y += 50   
                     }
+                    if (this.alive && this.isDead()) {
+                      this.alive = false;
+                    }
                     break
                 case 'd':
                     this.keys.d.pressed = true
                     this.lastKey = "d";
                     if (this.isTile(this.x + 50, this.y)) {
                         this.x += 50 
-                    } 
+                    }
+                    if (this.alive && this.isDead()) {
+                      this.alive = false;
+                    }
                     break
                 case ' ':
                     switch (this.lastKey) {
@@ -112,9 +124,10 @@ class Player {
     }
 
     getPlayerTile() {
-        let row =  this.currentTile()[0] + 1
-        let col = this.currentTile()[1] + 1
-        // console.log(Board.map[row][col])
+        let row =  this.currentTile()[0]
+        let col = this.currentTile()[1]
+        console.log([row, col])
+        console.log(Board.map[row][col])
         return Board.map[row][col]
     }
 
@@ -132,8 +145,11 @@ class Player {
 
         let tile = this.getAnyTile(row, col);
         if (tile.health > 0) {
-            tile.health -= 1
-        }   
+            tile.health -= 1;
+            if (tile.health === 0) {
+                tile.visible = false;
+            }
+        }
         console.log(tile)
     }
 
@@ -161,8 +177,9 @@ class Player {
     // Player dead logic
 
     isDead() {
-
         let tile = this.getPlayerTile();
+        
+        console.log(tile)
         if (tile.health === 0) {
             this.alive = false
         } else {
