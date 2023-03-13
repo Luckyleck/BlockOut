@@ -5,13 +5,26 @@
 //     padding: 20px;
 // }
 
+// #canvas {
+
+//     float: right;
+//     width: 1200px;
+//     height: 800px;
+//     border: 1px solid black;
+
+// }
+
 #canvas {
-
-    float: right;
-    width: 1200px;
-    height: 800px;
-    border: 1px solid black;
-
+	float: right;
+	margin-right: 25px;
+	margin-top: 25px;
+	background-color: blanchedalmond;
+    width: 80vw;
+    height: 47vw;
+    // width: 1200px;
+    // height: 800px;
+    border: 3px solid black;
+	border-radius: 10px;
 }
 
 /*

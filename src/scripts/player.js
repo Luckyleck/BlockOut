@@ -69,7 +69,7 @@ class Player {
     draw() {
         c.beginPath()
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        c.fillStyle = 'yellow'
+        c.fillStyle = 'red'
         c.fill();
         c.closePath()
     }
@@ -78,6 +78,19 @@ class Player {
         let row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1) // row is y
         let col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1) // col is x
         console.log([row,col])
+        return [row, col]
+    }
+
+    getTile() {
+        let row =  this.currentTile()[0]
+        let 
+    }
+
+    
+
+    validTiles() {
+        let currentPos = this.currentTile();
+        
     }
 
     // update() {
