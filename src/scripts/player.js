@@ -77,21 +77,21 @@ class Player {
     currentTile() {
         let row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1) // row is y
         let col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1) // col is x
-        console.log([row,col])
+        // console.log([row,col])
         return [row, col]
     }
 
     getTile() {
-        let row =  this.currentTile()[0]
-        let 
+        let row =  this.currentTile()[0] + 1
+        let col = this.currentTile()[1] + 1
+        console.log(Board.map[row][col])
+        return Board.map[row][col]
     }
 
-    
-
-    validTiles() {
-        let currentPos = this.currentTile();
+    // validTiles() {
+    //     let currentPos = this.currentTile();
         
-    }
+    // }
 
     // update() {
     //     this.draw()

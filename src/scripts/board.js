@@ -52,13 +52,13 @@ class Board {
             for (let j = 0; j < Board.map[i].length; j++) {
                 if (Board.map[i][j] === " ") {
                     Board.map[i][j] = new Tile(
-                        i, // x
-                        j  // y
+                        i, // row
+                        j  // col
                     )
                 } else {
                     Board.map[i][j] = new Boundary(
-                        i, // x
-                        j  // y
+                        i, // row
+                        j  // col
                     )
                 }
             }
@@ -73,6 +73,7 @@ class Board {
         Board.map.forEach((row) => {
             row.forEach((tile) => {
                 if (tile instanceof Tile) {
+                    console.log(tile.row, tile.col)
                     c.fillStyle = 'green';
                     c.fillRect(startX + (tile.row * tile.size), startY + (tile.col * tile.size), tile.size, tile.size);
                     c.lineWidth = 2;

@@ -91,10 +91,12 @@ function animate() {
     c.clearRect(0,0, canvas.width, canvas.height)
     board.draw();
     player.draw();
-    player.currentTile();
+    // player.currentTile();
     // console.log('row ' + player.row)
     // console.log('col ' + player.col)
 }
+
+player.getTile();
 
 animate();
 
