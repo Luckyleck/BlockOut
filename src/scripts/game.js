@@ -86,18 +86,24 @@ const player = new Player(575, 275)
 // console.log(Board.playFieldWidth)
 // console.log(Board.playFieldHeight)
 
+// board.draw();
 function animate() {
     window.requestAnimationFrame(animate)
     c.clearRect(0,0, canvas.width, canvas.height)
     board.draw();
     player.draw();
+    // player.isDead();
+    // console.log(this.alive)
+    // console.log(player.lastKey)
+ 
     // player.currentTile();
     // console.log('row ' + player.row)
     // console.log('col ' + player.col)
 }
 
-player.getTile();
-
-animate();
+// player.getTile();
+if (!player.alive) {
+    animate();
+}
 
 // calculate x and y of tile

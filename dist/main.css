@@ -5,7 +5,7 @@
   float: right;
   margin-right: 25px;
   margin-top: 25px;
-  background-color: blanchedalmond;
+  background-color: #ffebcd;
   width: 80vw;
   height: 47vw;
   border: 3px solid black;
@@ -32,7 +32,7 @@ aside {
   /* text-align: center; */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #canvas {
     width: 100%;
     height: auto;
