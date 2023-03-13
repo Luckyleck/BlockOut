@@ -101,9 +101,10 @@ function animate() {
     // console.log('col ' + player.col)
 }
 
+animate();
 // player.getTile();
-if (!player.alive) {
-    animate();
-}
+// if (!player.alive) {
+//     animate();
+// }
 
 // calculate x and y of tile
