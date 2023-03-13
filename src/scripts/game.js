@@ -11,7 +11,7 @@ Board.map.forEach(ele => console.log(ele))
 console.log(Board.canvasStartX)
 console.log(Board.canvasStartY)
 const player = new Player(575, 275)
-const player2 = new Playertwo(625, 225)
+const player2 = new Playertwo(1075, 175)
 
 
 
