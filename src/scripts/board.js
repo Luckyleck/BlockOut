@@ -266,16 +266,20 @@ class Board {
   static mapHeight = Board.map.length * Tile.size;
 
   // Map Start x and y
-  static canvasStartX = canvas.width / 2 / 2 / 2; //300
-  static canvasStartY = canvas.height / 2 / 2 / 2; //100
+  static gameFieldX = canvas.width / 2 / 2 / 2; //300
+  static gameFieldY = canvas.height / 2 / 2 / 2; //100
+
+  // Map End x and y
+  static gameFieldEndX = Board.map[0].length * Tile.size
+  static gameFieldEndY = Board.map.length * Tile.size
 
   // Playfield Width and Height
   static playFieldWidth = Board.mapWidth - Tile.size * 2;
   static playFieldHeight = Board.mapHeight - Tile.size * 2;
 
   // Playfield Start x and y
-  static playFieldStartX = Board.canvasStartX + Tile.size;
-  static playFieldStartY = Board.canvasStartY + Tile.size;
+  static playFieldStartX = Board.gameFieldX + Tile.size;
+  static playFieldStartY = Board.gameFieldY + Tile.size;
 
   constructor() {
     // this.tiles = []
@@ -306,128 +310,80 @@ class Board {
         if (tile instanceof Tile && tile.health === 3) {
           //   console.log(tile.row, tile.col);
           c.fillStyle = "green";
-          c.fillRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.fillRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black"; // outline color
-          c.strokeRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.strokeRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
           // c.drawImage(grass,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 2) {
           c.fillStyle = "#80461B";
-          c.fillRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.fillRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
-          c.strokeRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.strokeRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
         } else if (tile instanceof Tile && tile.health === 1) {
           c.fillStyle = "#362419";
-          c.fillRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.fillRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
-          c.strokeRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.strokeRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
         } else if (tile instanceof Tile && tile.health === 0) {
           c.fillStyle = "#ffebcd"; // color of background
-          c.fillRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.fillRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
-          c.strokeRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.strokeRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
         } else if (tile instanceof Boundary) {
           c.fillStyle = "grey";
-          c.fillRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.fillRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
-          c.strokeRect(
-            startX + tile.col * tile.size,
-            startY + tile.row * tile.size,
-            tile.size,
-            tile.size
-          );
+          c.strokeRect(startX + tile.col * tile.size,startY + tile.row * tile.size,tile.size,tile.size);
         }
       });
     });
   }
 
-  shrink() {
-    // Remove the first and last row
-    Board.map.shift();
-    Board.map.pop();
+//   shrink() {
+//     // Remove the first and last row
+//     Board.map.shift();
+//     Board.map.pop();
 
-    // Remove the first and last column from each remaining row
-    for (let i = 0; i < Board.map.length; i++) {
-      Board.map[i].shift();
-      Board.map[i].pop();
-    }
+//     // Remove the first and last column from each remaining row
+//     for (let i = 0; i < Board.map.length; i++) {
+//       Board.map[i].shift();
+//       Board.map[i].pop();
+//     }
 
-    // Update the map width and height to reflect the new size
-    Board.mapWidth -= Tile.size * 2;
-    Board.mapHeight -= Tile.size * 2;
+//     // Update the map width and height to reflect the new size
+//     Board.mapWidth -= Tile.size * 2;
+//     Board.mapHeight -= Tile.size * 2;
 
-    // Update the playfield width and height to reflect the new size
-    Board.playFieldWidth = Board.mapWidth - Tile.size * 2;
-    Board.playFieldHeight = Board.mapHeight - Tile.size * 2;
+//     // Update the playfield width and height to reflect the new size
+//     Board.playFieldWidth = Board.mapWidth - Tile.size * 2;
+//     Board.playFieldHeight = Board.mapHeight - Tile.size * 2;
 
-    // Update the playfield start x and y to reflect the new size
-    Board.playFieldStartX = Board.canvasStartX + Tile.size;
-    Board.playFieldStartY = Board.canvasStartY + Tile.size;
+//     // Update the playfield start x and y to reflect the new size
+//     Board.playFieldStartX = Board.gameFieldX + Tile.size;
+//     Board.playFieldStartY = Board.gameFieldY + Tile.size;
 
-    // Create a new border around the playfield
-    for (let i = 0; i < Board.map.length; i++) {
-      if (i === 0 || i === Board.map.length - 1) {
-        for (let j = 0; j < Board.map[i].length; j++) {
-          Board.map[i][j] = new Boundary(i, j);
-        }
-      } else {
-        Board.map[i][0] = new Boundary(i, 0);
-        Board.map[i][Board.map[i].length - 1] = new Boundary(
-          i,
-          Board.map[i].length - 1
-        );
-      }
-    }
-  }
+//     // Create a new border around the playfield
+//     for (let i = 0; i < Board.map.length; i++) {
+//       if (i === 0 || i === Board.map.length - 1) {
+//         for (let j = 0; j < Board.map[i].length; j++) {
+//           Board.map[i][j] = new Boundary(i, j);
+//         }
+//       } else {
+//         Board.map[i][0] = new Boundary(i, 0);
+//         Board.map[i][Board.map[i].length - 1] = new Boundary(
+//           i,
+//           Board.map[i].length - 1
+//         );
+//       }
+//     }
+
+//     this.draw();
+//   }
 }
 
 let mouse = {
@@ -443,16 +399,16 @@ window.addEventListener('mousemove',
     })
 
 window.addEventListener("mousemove", function (event) {
-    const canvasStartX = canvas.width / 4;
-    const canvasStartY = canvas.height / 8;
+    const gameFieldX = canvas.width / 4;
+    const gameFieldY = canvas.height / 8;
     const tileWidth = Board.map[0][0].size;
     const tileHeight = Board.map[0][0].size;
 
     const mouseX = event.clientX - canvas.getBoundingClientRect().left;
     const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
-    const tileX = Math.floor((mouseX - canvasStartX) / tileWidth);
-    const tileY = Math.floor((mouseY - canvasStartY) / tileHeight);
+    const tileX = Math.floor((mouseX - gameFieldX) / tileWidth);
+    const tileY = Math.floor((mouseY - gameFieldY) / tileHeight);
 
     if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
         const tile = Board.map[tileY][tileX];
