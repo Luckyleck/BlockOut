@@ -270,8 +270,8 @@ class Board {
   static gameFieldY = canvas.height / 2 / 2 / 2; //100
 
   // Map End x and y
-  static gameFieldEndX = Board.map[0].length * Tile.size
-  static gameFieldEndY = Board.map.length * Tile.size
+  static gameFieldEndX = (Board.map[0].length * Tile.size) + (Tile.size * 3)
+  static gameFieldEndY = (Board.map.length * Tile.size) + (Tile.size * 2)
 
   // Playfield Width and Height
   static playFieldWidth = Board.mapWidth - Tile.size * 2;

@@ -24,7 +24,7 @@ const player = new Player(
   Board.gameFieldX + Tile.size * 1.5,
   Board.gameFieldY + Tile.size * 1.5
 );
-const player2 = new Playertwo(Board.mapWidth, Board.mapHeight);
+const player2 = new Playertwo(Board.mapWidth + (Tile.size * 1.5), Board.mapHeight + (Tile.size / 2));
 // const rambo = new AI(Board.playFieldWidth/2, Board.playFieldHeight/2)
 player.currentPlace.occupied = true;
 player2.currentPlace.occupied = true;
