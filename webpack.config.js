@@ -4,19 +4,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
-  entry: [
-    path.resolve(__dirname, 'src', 'index.js'),
-    path.resolve(__dirname, 'src', 'index.scss')
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'), // bundled file in dist/
-    filename: '[name].js'
-  },
+  // ... other configuration options ...
   module: {
     rules: [
       {
         test: /\.js$/, // applies to js files
-        use: ['babel-loader'], // transpiles your js
+        use: ["babel-loader"], // transpiles your js
         exclude: /node_modules/, // don't transpile node modules
       },
       {
@@ -24,15 +17,22 @@ const config = {
         use: [
           MiniCssExtractPlugin.loader, // create bundled css file
           {
-            loader: 'css-loader', // resolves @import statements
-            options: { url: false } // don't resolve url() statements
+            loader: "css-loader", // resolves @import statements
+            options: { url: false }, // don't resolve url() statements
           },
-          'sass-loader', // compiles sass to css
-        ]
-      }
-    ]
+          "sass-loader", // compiles sass to css
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[path][name].[ext]",
+        },
+      },
+    ],
   },
-  plugins: [new MiniCssExtractPlugin()]
+  plugins: [new MiniCssExtractPlugin()],
 };
 
 module.exports = (env, argv) => {
@@ -44,3 +44,35 @@ module.exports = (env, argv) => {
 
   return config;
 }
+
+// const config = {
+//   // ... other configuration options ...
+//   module: {
+//     rules: [
+//       {
+//         test: /\.js$/, // applies to js files
+//         use: ["babel-loader"], // transpiles your js
+//         exclude: /node_modules/, // don't transpile node modules
+//       },
+//       {
+//         test: /\.s?[ac]ss$/, // applies to css/scss/sass files
+//         use: [
+//           MiniCssExtractPlugin.loader, // create bundled css file
+//           {
+//             loader: "css-loader", // resolves @import statements
+//             options: { url: false }, // don't resolve url() statements
+//           },
+//           "sass-loader", // compiles sass to css
+//         ],
+//       },
+//       {
+//         test: /\.(png|jpe?g|gif)$/i,
+//         loader: "file-loader",
+//         options: {
+//           name: "[path][name].[ext]",
+//         },
+//       },
+//     ],
+//   },
+//   plugins: [new MiniCssExtractPlugin()],
+// };

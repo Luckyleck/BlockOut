@@ -1,6 +1,7 @@
 import Tile from './tile.js'
 import Boundary from './boundary.js'
 import Player from './player.js'
+// import grass from './img/grass.png'
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d")
@@ -8,175 +9,425 @@ const c = canvas.getContext("2d")
 // c.fillRect(20, 20, 20, 20)
 
 class Board {
-    static tiles = [];
+  static tiles = [];
 
-    static map = [
-        ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-        ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-    ]
+  static map = [
+    [
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "-",
+    ],
+    [
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+      "-",
+    ],
+  ];
 
-    // Map total Width and Height
-    static mapWidth = Board.map[0].length * Tile.size;
-    static mapHeight = Board.map.length * Tile.size;
+  // Map total Width and Height
+  static mapWidth = Board.map[0].length * Tile.size;
+  static mapHeight = Board.map.length * Tile.size;
 
-    // Map Start x and y
-    static canvasStartX = canvas.width / 4; //300
-    static canvasStartY = canvas.height / 8; //100
+  // Map Start x and y
+  static canvasStartX = canvas.width / 2 / 2 / 2; //300
+  static canvasStartY = canvas.height / 2 / 2 / 2; //100
 
-    // Playfield Width and Height
-    static playFieldWidth = Board.mapWidth - Tile.size * 2;
-    static playFieldHeight = Board.mapHeight - Tile.size * 2;
+  // Playfield Width and Height
+  static playFieldWidth = Board.mapWidth - Tile.size * 2;
+  static playFieldHeight = Board.mapHeight - Tile.size * 2;
 
-    // Playfield Start x and y
-    static playFieldStartX = Board.canvasStartX + Tile.size;
-    static playFieldStartY = Board.canvasStartY + Tile.size;
+  // Playfield Start x and y
+  static playFieldStartX = Board.canvasStartX + Tile.size;
+  static playFieldStartY = Board.canvasStartY + Tile.size;
 
-    constructor() {
-        // this.tiles = []
-        for (let i = 0; i < Board.map.length; i++) {
-            for (let j = 0; j < Board.map[i].length; j++) {
-                if (Board.map[i][j] === " ") {
-                    Board.map[i][j] = new Tile(
-                        i, // row
-                        j // col
-                    );
-                } else {
-                    Board.map[i][j] = new Boundary(
-                        i, // row
-                        j // col
-                    );
-                }
-            }
+  constructor() {
+    // this.tiles = []
+    for (let i = 0; i < Board.map.length; i++) {
+      for (let j = 0; j < Board.map[i].length; j++) {
+        if (Board.map[i][j] === " ") {
+          Board.map[i][j] = new Tile(
+            i, // row
+            j // col
+          );
+        } else {
+          Board.map[i][j] = new Boundary(
+            i, // row
+            j // col
+          );
         }
+      }
+    }
+  }
+
+  draw() {
+    const startX = canvas.width / 2 / 2 / 2;
+    const startY = canvas.height / 2 / 2 / 2;
+
+    Board.map.forEach((row) => {
+      row.forEach((tile) => {
+        // Col first, then row
+        if (tile instanceof Tile && tile.health === 3) {
+          //   console.log(tile.row, tile.col);
+          c.fillStyle = "green";
+          c.fillRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+          c.lineWidth = 2;
+          c.strokeStyle = "black"; // outline color
+          c.strokeRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+          // c.drawImage(grass,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
+        } else if (tile instanceof Tile && tile.health === 2) {
+          c.fillStyle = "#80461B";
+          c.fillRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+          c.lineWidth = 2;
+          c.strokeStyle = "black";
+          c.strokeRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+        } else if (tile instanceof Tile && tile.health === 1) {
+          c.fillStyle = "#362419";
+          c.fillRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+          c.lineWidth = 2;
+          c.strokeStyle = "black";
+          c.strokeRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+        } else if (tile instanceof Tile && tile.health === 0) {
+          c.fillStyle = "#ffebcd"; // color of background
+          c.fillRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+          c.lineWidth = 2;
+          c.strokeStyle = "black";
+          c.strokeRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+        } else if (tile instanceof Boundary) {
+          c.fillStyle = "grey";
+          c.fillRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+          c.lineWidth = 2;
+          c.strokeStyle = "black";
+          c.strokeRect(
+            startX + tile.col * tile.size,
+            startY + tile.row * tile.size,
+            tile.size,
+            tile.size
+          );
+        }
+      });
+    });
+  }
+
+  shrink() {
+    // Remove the first and last row
+    Board.map.shift();
+    Board.map.pop();
+
+    // Remove the first and last column from each remaining row
+    for (let i = 0; i < Board.map.length; i++) {
+      Board.map[i].shift();
+      Board.map[i].pop();
     }
 
-    // draw() {
-    //     const startX = canvas.width / 4;
-    //     const startY = canvas.height / 8;
-        
-    //     let grassFull = new Image();
-    //     grassFull.src = '../img/grass.jpg'
+    // Update the map width and height to reflect the new size
+    Board.mapWidth -= Tile.size * 2;
+    Board.mapHeight -= Tile.size * 2;
 
-    //     Board.map.forEach((row) => {
-    //         row.forEach((tile) => {
-    //             // Col first, then row
-    //             if (tile instanceof Tile) {
-    //                 // console.log(tile.row, tile.col)
-    //                 c.fillStyle = "green";
-    //                 c.fillRect(
-    //                     startX + tile.col * tile.size,
-    //                     startY + tile.row * tile.size,
-    //                     tile.size,
-    //                     tile.size
-    //                 );
-    //                 c.lineWidth = 2;
-    //                 c.strokeStyle = "black";
-    //                 c.strokeRect(
-    //                     startX + tile.col * tile.size,
-    //                     startY + tile.row * tile.size,
-    //                     tile.size,
-    //                     tile.size
-    //                 );
-    //             } else {
-    //                 c.fillStyle = "blue";
-    //                 c.fillRect(
-    //                     startX + tile.col * tile.size,
-    //                     startY + tile.row * tile.size,
-    //                     tile.size,
-    //                     tile.size
-    //                 );
-    //                 c.lineWidth = 2;
-    //                 c.strokeStyle = "black";
-    //                 c.strokeRect(
-    //                     startX + tile.col * tile.size,
-    //                     startY + tile.row * tile.size,
-    //                     tile.size,
-    //                     tile.size
-    //                 );
-    //             }
-    //         });
-    //     });
-    // }
+    // Update the playfield width and height to reflect the new size
+    Board.playFieldWidth = Board.mapWidth - Tile.size * 2;
+    Board.playFieldHeight = Board.mapHeight - Tile.size * 2;
 
-    // draw() {
+    // Update the playfield start x and y to reflect the new size
+    Board.playFieldStartX = Board.canvasStartX + Tile.size;
+    Board.playFieldStartY = Board.canvasStartY + Tile.size;
 
-    //     const startX = canvas.width / 4
-    //     const startY = canvas.height / 8
-
-    //     Board.map.forEach((row) => {
-    //         row.forEach((tile) => {
-    //             // Col first, then row
-    //             if (tile instanceof Tile) {
-    //                 // console.log(tile.row, tile.col)
-    //                 c.fillStyle = "green";
-    //                 c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-    //                 c.lineWidth = 2;
-    //                 c.strokeStyle = 'black';
-    //                 c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-    //             } else {
-    //                 c.fillStyle = 'blue';
-    //                 c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-    //                 c.lineWidth = 2;
-    //                 c.strokeStyle = 'black';
-    //                 c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-    //             }
-    //         })
-    //     })
-    // }
-
-    draw() {
-        const startX = canvas.width / 4
-        const startY = canvas.height / 8
-
-        Board.map.forEach((row) => {
-            row.forEach((tile) => {
-                // Col first, then row
-                if (tile instanceof Tile && tile.health === 3) {
-                    // console.log(tile.row, tile.col)
-                    c.fillStyle = 'green';
-                    c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                    c.lineWidth = 2;
-                    c.strokeStyle = 'black'; // outline color 
-                    c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                } else if (tile instanceof Tile && tile.health === 2) {
-                    c.fillStyle = '#80461B';
-                    c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                    c.lineWidth = 2;
-                    c.strokeStyle = 'black';
-                    c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                } else if (tile instanceof Tile && tile.health === 1) {
-                    c.fillStyle = "#362419";
-                    c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                    c.lineWidth = 2;
-                    c.strokeStyle = 'black';
-                    c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                } else if (tile instanceof Tile && tile.health === 0) {
-                    c.fillStyle = '#ffebcd'; // color of background
-                    c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                    c.lineWidth = 2;
-                    c.strokeStyle = 'black';
-                    c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                } else if (tile instanceof Boundary) {
-                    c.fillStyle = 'grey';
-                    c.fillRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                    c.lineWidth = 2;
-                    c.strokeStyle = 'black';
-                    c.strokeRect(startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size);
-                }
-            })
-        })
+    // Create a new border around the playfield
+    for (let i = 0; i < Board.map.length; i++) {
+      if (i === 0 || i === Board.map.length - 1) {
+        for (let j = 0; j < Board.map[i].length; j++) {
+          Board.map[i][j] = new Boundary(i, j);
+        }
+      } else {
+        Board.map[i][0] = new Boundary(i, 0);
+        Board.map[i][Board.map[i].length - 1] = new Boundary(
+          i,
+          Board.map[i].length - 1
+        );
+      }
     }
+  }
 }
 
 let mouse = {

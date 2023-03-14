@@ -13,7 +13,9 @@ class Playertwo {
     this.radius = 15;
     this.row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1); // row is y
     this.col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1); // col is x
+    this.currentPlace = this.getPlayerTile();
     this.alive = true;
+    this.victory = false;
     // this.row = this.currentTile[0]
     // this.row = this.currentTile[1]
 
@@ -35,12 +37,18 @@ class Playertwo {
     };
 
     window.addEventListener("keydown", ({ key }) => {
-      console.log(key)
+      // console.log(key);
+      var nowTile;
+      var nextTile;
       switch (key) {
         case "ArrowUp":
           this.keys.ArrowUp.pressed = true;
           this.lastKey = "ArrowUp";
-          if (this.isTile(this.x, this.y - 50)) {
+          nowTile = this.getPlayerTile();
+          nextTile = this.getAnyTileXY(this.x, this.y - 50);
+          if (this.isTile(this.x, this.y - 50) && nextTile.occupied === false) {
+            nowTile.occupied = false;
+            nextTile.occupied = true;
             this.y -= 50;
           }
           if (this.alive && this.isDead()) {
@@ -50,7 +58,11 @@ class Playertwo {
         case "ArrowLeft":
           this.keys.ArrowLeft.pressed = true;
           this.lastKey = "ArrowLeft";
-          if (this.isTile(this.x - 50, this.y)) {
+          nowTile = this.getPlayerTile();
+          nextTile = this.getAnyTileXY(this.x - 50, this.y);
+          if (this.isTile(this.x - 50, this.y) && nextTile.occupied === false) {
+            nowTile.occupied = false;
+            nextTile.occupied = true;
             this.x -= 50;
           }
           if (this.alive && this.isDead()) {
@@ -60,7 +72,11 @@ class Playertwo {
         case "ArrowDown":
           this.keys.ArrowDown.pressed = true;
           this.lastKey = "ArrowDown";
-          if (this.isTile(this.x, this.y + 50)) {
+          nowTile = this.getPlayerTile();
+          nextTile = this.getAnyTileXY(this.x, this.y + 50);
+          if (this.isTile(this.x, this.y + 50) && nextTile.occupied === false) {
+            nowTile.occupied = false;
+            nextTile.occupied = true;
             this.y += 50;
           }
           if (this.alive && this.isDead()) {
@@ -70,7 +86,11 @@ class Playertwo {
         case "ArrowRight":
           this.keys.ArrowRight.pressed = true;
           this.lastKey = "ArrowRight";
-          if (this.isTile(this.x + 50, this.y)) {
+          nowTile = this.getPlayerTile();
+          nextTile = this.getAnyTileXY(this.x + 50, this.y);
+          if (this.isTile(this.x + 50, this.y) && nextTile.occupied === false) {
+            nowTile.occupied = false;
+            nextTile.occupied = true;
             this.x += 50;
           }
           if (this.alive && this.isDead()) {
@@ -119,19 +139,27 @@ class Playertwo {
   currentTile() {
     let row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1); // row is y
     let col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1); // col is x
-    console.log([row, col]);
+    // console.log([row, col]);
     return [row, col];
   }
 
   getPlayerTile() {
     let row = this.currentTile()[0];
     let col = this.currentTile()[1];
-    console.log([row, col]);
-    console.log(Board.map[row][col]);
+    // console.log([row, col]);
+    // console.log(Board.map[row][col]);
     return Board.map[row][col];
   }
 
   getAnyTile(row, col) {
+    return Board.map[row][col];
+  }
+
+  getAnyTileXY(x, y) {
+    let tile = this.xyConvert(x, y);
+    let row = tile[0];
+    let col = tile[1];
+
     return Board.map[row][col];
   }
 
@@ -147,9 +175,12 @@ class Playertwo {
       tile.health -= 1;
       if (tile.health === 0) {
         tile.visible = false;
+        if (tile.occupied) {
+          this.victory = true;
+        }
       }
     }
-    console.log(tile);
+    // console.log(tile);
   }
 
   // Tile existence logic (use for boundary detection)

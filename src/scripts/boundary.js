@@ -5,6 +5,7 @@ class Boundary {
         this.row = row; 
         this.col = col
         this.size = Boundary.size;
+        this.occupied = false;
     }
 }
 
