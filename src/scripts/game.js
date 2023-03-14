@@ -110,7 +110,7 @@ function animate() {
       c.fillText("Red Wins!", canvas.width / 4, canvas.height / 2);
     }
     // player.isDead();
-    console.log(player.alive)
+    // console.log(player.alive)
     // console.log(player.lastKey)
  
     // player.currentTile();

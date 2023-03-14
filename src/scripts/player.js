@@ -36,6 +36,7 @@ class Player {
         }
 
         window.addEventListener('keydown', ({ key }) => {
+            console.log(key)
             switch (key) {
                 case 'w':
                     this.keys.w.pressed = true
