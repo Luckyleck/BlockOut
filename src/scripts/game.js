@@ -29,6 +29,7 @@ let playerTwo;
 let board;
 
 function localAnimate(player1, player2, board) {
+  
   window.requestAnimationFrame(() => {
     // c.clearRect(Board.gameFieldX, Board.gameFieldY, Board.gameFieldEndX - Board.gameFieldX, Board.gameFieldEndY - Board.gameFieldY);
     c.clearRect(0, 0, canvas.width, canvas.height);

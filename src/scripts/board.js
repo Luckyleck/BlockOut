@@ -136,47 +136,6 @@ class Board {
       }
     }
   }
-
-  //   shrink() {
-  //     // Remove the first and last row
-  //     Board.map.shift();
-  //     Board.map.pop();
-
-  //     // Remove the first and last column from each remaining row
-  //     for (let i = 0; i < Board.map.length; i++) {
-  //       Board.map[i].shift();
-  //       Board.map[i].pop();
-  //     }
-
-  //     // Update the map width and height to reflect the new size
-  //     Board.mapWidth -= Tile.size * 2;
-  //     Board.mapHeight -= Tile.size * 2;
-
-  //     // Update the playfield width and height to reflect the new size
-  //     Board.playFieldWidth = Board.mapWidth - Tile.size * 2;
-  //     Board.playFieldHeight = Board.mapHeight - Tile.size * 2;
-
-  //     // Update the playfield start x and y to reflect the new size
-  //     Board.playFieldStartX = Board.gameFieldX + Tile.size;
-  //     Board.playFieldStartY = Board.gameFieldY + Tile.size;
-
-  //     // Create a new border around the playfield
-  //     for (let i = 0; i < Board.map.length; i++) {
-  //       if (i === 0 || i === Board.map.length - 1) {
-  //         for (let j = 0; j < Board.map[i].length; j++) {
-  //           Board.map[i][j] = new Boundary(i, j);
-  //         }
-  //       } else {
-  //         Board.map[i][0] = new Boundary(i, 0);
-  //         Board.map[i][Board.map[i].length - 1] = new Boundary(
-  //           i,
-  //           Board.map[i].length - 1
-  //         );
-  //       }
-  //     }
-
-  //     this.draw();
-  //   }
 }
 
 let mouse = {
