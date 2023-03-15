@@ -10,22 +10,6 @@ const c = canvas.getContext("2d")
 
 class Board {
 
-  static ogmap = [
-    ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-    ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-  ]
-
   static map = [
     ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
     ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
@@ -42,13 +26,16 @@ class Board {
     ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
   ];
 
+  static canvasCenterX = canvas.width/2
+  static canvasCenterY = canvas.height/2
+
   // Map total Width and Height
   static mapWidth = Board.map[0].length * Tile.size;
   static mapHeight = Board.map.length * Tile.size;
 
   // Map Start x and y
-  static gameFieldX = canvas.width / 2 / 2 / 2; //300
-  static gameFieldY = canvas.height / 2 / 2 / 2; //100
+  static gameFieldX = Board.canvasCenterX / 2 / 2; //300
+  static gameFieldY = Board.canvasCenterY / 4 ; //100
 
   // Map End x and y
   static gameFieldEndX = (Board.map[0].length * Tile.size) + (Tile.size * 3)
@@ -82,8 +69,8 @@ class Board {
   }
 
   draw() {
-    const startX = canvas.width / 2 / 2 / 2;
-    const startY = canvas.height / 2 / 2 / 2;
+    const startX = Board.gameFieldX
+    const startY = Board.gameFieldY
 
     Board.map.forEach((row) => {
       row.forEach((tile) => {
@@ -95,9 +82,9 @@ class Board {
           c.shadowColor = "black";
           c.fillStyle = "green";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          c.lineWidth = 2;
-          c.strokeStyle = "black"; // outline color
-          c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.lineWidth = 2;
+          // c.strokeStyle = "black"; // outline color
+          // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           // c.drawImage(grass,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 2) {
           c.shadowBlur = 10;
@@ -128,9 +115,9 @@ class Board {
           c.shadowColor = "white";
           c.fillStyle = "grey";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          c.lineWidth = 2;
-          c.strokeStyle = "black";
-          c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.lineWidth = 2;
+          // c.strokeStyle = "black";
+          // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.shadowBlur = 0
           c.shadowColor = undefined;
         }

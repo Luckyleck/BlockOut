@@ -5,14 +5,14 @@
   float: right;
   margin-right: 25px;
   margin-top: 25px;
-  // background-color: #ffebcd;
+  /* // background-color: #ffebcd; */
   background-image: url('https://gcdnb.pbrd.co/images/bBEWZkREJaND.png?o=1');
   background-repeat: no-repeat;
   background-size: cover;
   width: 75%; /*80*/
   height: 45vw;
-  // width: 1200px;
-  // height: 800px;
+  /* // width: 1200px;
+  // height: 800px; */
   border: 3px solid black;
   border-radius: 10px;
 }
@@ -30,8 +30,8 @@ aside {
   margin-left: 25px;
   margin-top: 25px;
   width: 20%;
-  height: 47vw;
-  background-color: blanchedalmond;
+  height: 45vw;
+  background-color: #f3b9fe;
   border: 3px solid black;
   border-radius: 10px;
   /* text-align: center; */
@@ -56,7 +56,7 @@ aside {
   background-color: grey;
   height: 5vw;
   margin-top: 14px;
-  font-size: 30px;
+  font-size: 400%;
   text-align: center;
   opacity: 0.8;
 }
@@ -74,13 +74,13 @@ aside {
   font-weight: bold;
 
   cursor: pointer;
-
-  &:hover {
-      background-color: #f57c00;
-  }
+}
+#spawn-btn-player:hover {
+  background-color: #fb9025;
 }
 
 #spawn-btn-ai {
+  font-family: system-ui;
   position: absolute;
   top: 8%;
   left: 35%;
@@ -94,7 +94,16 @@ aside {
 
   cursor: pointer;
 
-  &:hover {
-      background-color: #f57c00;
-  }
+}
+
+#spawn-btn-ai:hover {
+  background-color: #fb9025;
+}
+
+aside p {
+  text-align: center;
+  font-size: 25px;
+  background-color: grey; 
+  position: relative;
+  
 }

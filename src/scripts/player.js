@@ -23,23 +23,6 @@ class Player {
 
         this.lastKey = ''
 
-        this.keys = {
-            w: {
-                pressed: false
-            },
-            a: {
-                pressed: false
-            },
-            s: {
-                pressed: false
-            },
-            d: {
-                pressed: false
-            }
-        }
-
-        
-
         window.addEventListener('keydown', ({ key }) => {
             // console.log(key)
             // var nextTile = this.getAnyTileXY(this.x, this.y - 50);
@@ -47,7 +30,7 @@ class Player {
             var nextTile;
             switch (key) {
                 case 'w':
-                    this.keys.w.pressed = true
+                   
                     this.lastKey = 'w'
                     nowTile = this.getPlayerTile();
                     nextTile = this.getAnyTileXY(this.x, this.y - 50);
@@ -65,7 +48,7 @@ class Player {
                     }
                     break
                 case 'a':
-                    this.keys.a.pressed = true
+                    
                     this.lastKey = "a";
                     nowTile = this.getPlayerTile();
                     nextTile = this.getAnyTileXY(this.x - 50, this.y);
@@ -80,7 +63,7 @@ class Player {
                     }
                     break
                 case 's':
-                    this.keys.s.pressed = true
+                   
                     this.lastKey = "s";
                     nowTile = this.getPlayerTile();
                     nextTile = this.getAnyTileXY(this.x, this.y + 50);
@@ -94,7 +77,7 @@ class Player {
                     }
                     break
                 case 'd':
-                    this.keys.d.pressed = true
+                    
                     this.lastKey = "d";
                     nowTile = this.getPlayerTile();
                     nextTile = this.getAnyTileXY(this.x + 50, this.y);
@@ -239,7 +222,6 @@ class Player {
         this.alive = undefined;
         this.victory = undefined;
         this.lastkey = undefined;
-        this.keys = undefined;
     }
 }
 

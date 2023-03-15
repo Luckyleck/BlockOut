@@ -15,9 +15,21 @@ class AI {
     this.victory = false;
     this.currentPlace = this.getPlayerTile();
     this.lastKey = "";
+    this.canMove = true;
+    this.canBreak = true;
+  }
+
+  moveAndBreak() {
+    this.makeMove();
+    this.makeMove();
+    this.break();
+    this.makeMove();
   }
 
   makeMove() {
+
+    if (!this.canMove) return false;
+
     const directions = ["north", "south", "east", "west"];
 
     let direction = directions[Math.floor(Math.random() * directions.length)];
@@ -97,9 +109,13 @@ class AI {
         }
         break;
     }
+    // throttle
+    this.canMove = false
+    setTimeout(() => this.canMove = true, 200)
   }
 
   break() {
+    if (!this.canBreak) return false;
     switch (this.lastKey) {
       case "north":
         if (this.isTile(this.x, this.y - 50)) {
@@ -122,6 +138,8 @@ class AI {
         }
         break;
     }
+    this.canBreak = false;
+    setTimeout(() => (this.canBreak = true), 200);
   }
 
   draw() {

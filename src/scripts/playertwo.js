@@ -21,28 +21,13 @@ class Playertwo {
 
     this.lastKey = "";
 
-    this.keys = {
-      ArrowUp: {
-        pressed: false,
-      },
-      ArrowLeft: {
-        pressed: false,
-      },
-      ArrowDown: {
-        pressed: false,
-      },
-      ArrowRight: {
-        pressed: false,
-      },
-    };
-
     window.addEventListener("keydown", ({ key }) => {
       // console.log(key);
       var nowTile;
       var nextTile;
       switch (key) {
         case "ArrowUp":
-          this.keys.ArrowUp.pressed = true;
+
           this.lastKey = "ArrowUp";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x, this.y - 50);
@@ -56,7 +41,7 @@ class Playertwo {
           }
           break;
         case "ArrowLeft":
-          this.keys.ArrowLeft.pressed = true;
+
           this.lastKey = "ArrowLeft";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x - 50, this.y);
@@ -70,7 +55,7 @@ class Playertwo {
           }
           break;
         case "ArrowDown":
-          this.keys.ArrowDown.pressed = true;
+ 
           this.lastKey = "ArrowDown";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x, this.y + 50);
@@ -84,7 +69,7 @@ class Playertwo {
           }
           break;
         case "ArrowRight":
-          this.keys.ArrowRight.pressed = true;
+      
           this.lastKey = "ArrowRight";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x + 50, this.y);
@@ -229,7 +214,6 @@ class Playertwo {
     this.alive = undefined;
     this.victory = undefined;
     this.lastkey = undefined;
-    this.keys = undefined;
   }
 }
 
