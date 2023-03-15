@@ -14,7 +14,7 @@ class AI {
     this.col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1); // col is x
     this.victory = false;
     this.currentPlace = this.getPlayerTile();
-    this.lastKey = ""
+    this.lastKey = "";
   }
 
   makeMove() {
@@ -29,7 +29,11 @@ class AI {
         this.lastKey = "north";
         nowTile = this.getPlayerTile();
         nextTile = this.getAnyTileXY(this.x, this.y - 50);
-        if (this.isTile(this.x, this.y - 50) && nextTile.occupied === false && nextTile.health > 0) {
+        if (
+          this.isTile(this.x, this.y - 50) &&
+          nextTile.occupied === false &&
+          nextTile.health > 0
+        ) {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.y -= 50;
@@ -43,7 +47,11 @@ class AI {
         this.lastKey = "west";
         nowTile = this.getPlayerTile();
         nextTile = this.getAnyTileXY(this.x - 50, this.y);
-        if (this.isTile(this.x - 50, this.y) && nextTile.occupied === false && nextTile.health > 0 ) {
+        if (
+          this.isTile(this.x - 50, this.y) &&
+          nextTile.occupied === false &&
+          nextTile.health > 0
+        ) {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.x -= 50;
@@ -57,7 +65,11 @@ class AI {
         this.lastKey = "south";
         nowTile = this.getPlayerTile();
         nextTile = this.getAnyTileXY(this.x, this.y + 50);
-        if (this.isTile(this.x, this.y + 50) && nextTile.occupied === false && nextTile.health > 0) {
+        if (
+          this.isTile(this.x, this.y + 50) &&
+          nextTile.occupied === false &&
+          nextTile.health > 0
+        ) {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.y += 50;
@@ -71,7 +83,11 @@ class AI {
         this.lastKey = "east";
         nowTile = this.getPlayerTile();
         nextTile = this.getAnyTileXY(this.x + 50, this.y);
-        if (this.isTile(this.x + 50, this.y) && nextTile.occupied === false && nextTile.health > 0) {
+        if (
+          this.isTile(this.x + 50, this.y) &&
+          nextTile.occupied === false &&
+          nextTile.health > 0
+        ) {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.x += 50;
@@ -83,7 +99,7 @@ class AI {
     }
   }
 
-  break() { 
+  break() {
     switch (this.lastKey) {
       case "north":
         if (this.isTile(this.x, this.y - 50)) {
@@ -195,6 +211,20 @@ class AI {
     } else {
       this.alive = true;
     }
+  }
+
+  reset() {
+    this.x = undefined;
+    this.y = undefined;
+    this.dx = undefined;
+    this.dy = undefined;
+    this.radius = undefined;
+    this.row = undefined;
+    this.col = undefined;
+    this.currentPlace = undefined;
+    this.alive = undefined;
+    this.victory = undefined;
+    this.lastkey = undefined;
   }
 }
 

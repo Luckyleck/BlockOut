@@ -226,6 +226,21 @@ class Player {
             this.alive = true
         }
     }
+
+    reset() {
+        this.x = undefined
+        this.y = undefined
+        this.dx = undefined
+        this.dy = undefined
+        this.radius = undefined;
+        this.row = undefined;
+        this.col = undefined;
+        this.currentPlace = undefined;
+        this.alive = undefined;
+        this.victory = undefined;
+        this.lastkey = undefined;
+        this.keys = undefined;
+    }
 }
 
 export default Player;

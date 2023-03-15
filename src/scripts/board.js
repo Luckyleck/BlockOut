@@ -91,6 +91,8 @@ class Board {
         // Col first, then row
         if (tile instanceof Tile && tile.health === 3) {
           //   console.log(tile.row, tile.col);
+          c.shadowBlur = 10;
+          c.shadowColor = "black";
           c.fillStyle = "green";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.lineWidth = 2;
@@ -98,36 +100,54 @@ class Board {
           c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           // c.drawImage(grass,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 2) {
+          c.shadowBlur = 10;
+          c.shadowColor = "black";
           c.fillStyle = "#80461B";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
           c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
         } else if (tile instanceof Tile && tile.health === 1) {
+          c.shadowBlur = 10;
+          c.shadowColor = "black";
           c.fillStyle = "#362419";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
           c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
         } else if (tile instanceof Tile && tile.health === 0) {
+          c.globalAlpha = 0.0;
           c.fillStyle = "#ffebcd"; // color of background
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
           c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          c.globalAlpha = 1;
         } else if (tile instanceof Boundary) {
+          c.shadowBlur = 8;
+          c.shadowColor = "white";
           c.fillStyle = "grey";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.lineWidth = 2;
           c.strokeStyle = "black";
           c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          c.shadowBlur = 0
+          c.shadowColor = undefined;
         }
       });
     });
   }
 
   reset() {
-    Board.map = Board.ogmap
+    for (let i = 0; i < Board.map.length; i++) {
+      for (let j = 0; j < Board.map[i].length; j++) {
+        if (Board.map[i][j] instanceof Tile) {
+          Board.map[i][j] = " "
+        } else {
+          Board.map[i][j] = "-"
+        }
+      }
+    }
   }
 
   //   shrink() {

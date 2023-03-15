@@ -3,6 +3,7 @@ import Player from "./player.js";
 import Playertwo from "./playertwo.js";
 import Tile from "./tile.js";
 import AI from "./ai.js";
+import spawnBtnPlayer from './game.js'
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
@@ -56,7 +57,7 @@ class Game {
           c.font = "200px Georgia";
           c.fillStyle = "Orange";
           c.fillText("Blue Wins!", canvas.width / 4, canvas.height / 2);
-          // spawnBtnPlayer.style.display = "block"; // show the spawn button
+          spawnBtnPlayer.style.display = "block"; // show the spawn button
           return; // stop the animation
         }
         if (player2.alive && !player1.victory) {
@@ -65,7 +66,7 @@ class Game {
           c.font = "200px Georgia";
           c.fillStyle = "Orange";
           c.fillText("Red Wins!", canvas.width / 4, canvas.height / 2);
-          // spawnBtnPlayer.style.display = "block"; // show the spawn button
+          spawnBtnPlayer.style.display = "block"; // show the spawn button
           return; // stop the animation
         }
       }
