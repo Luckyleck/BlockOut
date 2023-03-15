@@ -8,13 +8,7 @@ class Tile {
     this.health = 3;
     this.visible = true;
     this.occupied = false;
-    this.row;
-    this.col;
   }
-
-//   isOccupied() {
-
-//   }
 }
 
 export default Tile;

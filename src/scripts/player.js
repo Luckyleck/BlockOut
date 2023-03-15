@@ -130,7 +130,6 @@ class Player {
                             } 
                         break;
                     }
-                    console.log('hello')
                     break
             }
             // console.log(keys.d.pressed)
@@ -191,7 +190,7 @@ class Player {
                 }
             }
         }
-        console.log(tile)
+        // console.log(tile)
     }
 
     // Tile existence logic (use for boundary detection)
@@ -227,21 +226,6 @@ class Player {
             this.alive = true
         }
     }
-
-    // Tile is occupied
-
-    // isNotOccupied(x, y) {
-    //     let tile1 = this.currentTile();
-    //     // work from board tile
-    // }
-
-    
-
-    // update() {
-    //     this.draw()
-    //     this.x += this.dx
-    //     this.y += this.dy
-    // }
 }
 
 export default Player;

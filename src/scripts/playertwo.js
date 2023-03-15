@@ -209,7 +209,7 @@ class Playertwo {
   isDead() {
     let tile = this.getPlayerTile();
 
-    console.log(tile);
+    // console.log(tile);
     if (tile.health === 0) {
       this.alive = false;
     } else {
@@ -217,11 +217,6 @@ class Playertwo {
     }
   }
 
-  // update() {
-  //     this.draw()
-  //     this.x += this.dx
-  //     this.y += this.dy
-  // }
 }
 
 export default Playertwo;

@@ -18,7 +18,10 @@
 	float: right;
 	margin-right: 25px;
 	margin-top: 25px;
-	background-color: #ffebcd;
+	// background-color: #ffebcd;
+    background-image: url('https://images.pexels.com/photos/7060307/pexels-photo-7060307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 80vw;
     height: 47vw;
     // width: 1200px;
@@ -26,6 +29,8 @@
     border: 3px solid black;
 	border-radius: 10px;
 }
+
+
 
 /*
 canvas.style.setAttribute("float", "right")
