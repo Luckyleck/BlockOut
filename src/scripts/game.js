@@ -103,7 +103,7 @@ function aiAnimate(player1, ai, board) {
       } else {
         c.font = "100px Georgia";
         c.fillStyle = "Orange";
-        c.fillText("Rambo wins!", Board.mapWidth / 2 - 150, canvas.height / 2);
+        c.fillText("Rambo wins!", Board.mapWidth / 2 - 75, canvas.height / 2);
         spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
         return; 
@@ -117,7 +117,7 @@ function aiAnimate(player1, ai, board) {
       } else {
         c.font = "100px Georgia";
         c.fillStyle = "Orange";
-        c.fillText("Player wins!", Board.mapWidth / 2 - 150, canvas.height / 2);
+        c.fillText("Player wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
         spawnBtnAI.style.display = "block"; 
         spawnBtnPlayer.style.display = "block";
         return; // 

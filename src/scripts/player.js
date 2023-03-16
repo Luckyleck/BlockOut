@@ -5,8 +5,12 @@ import Playertwo from "./playertwo.js"
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
 
-const playerImage = new Image();
-playerImage.src = './images/No_background_shovel.png';
+const shovelRight = new Image();
+shovelRight.src = './images/shovels/Shovel_Red_Right.png';
+const shovelLeft = new Image();
+shovelLeft.src = "./images/shovels/Shovel_Red_Left.png";
+const shovelDown = new Image();
+shovelDown.src = "./images/shovels/Shovel_Red_Down.png";
 
 class Player {
 
@@ -21,7 +25,8 @@ class Player {
         this.currentPlace = this.getPlayerTile();
         this.alive = true;
         this.victory = false;
-        this.image = playerImage;
+        this.direction = 'right'
+        this.image;
         // this.row = this.currentTile[0]
         // this.row = this.currentTile[1]
 
@@ -44,6 +49,7 @@ class Player {
                         nowTile.occupied = false
                         nextTile.occupied = true
                         this.y -= 50
+                        this.direction = 'up'
                         // console.log(nowTile)
                         // console.log(nextTile)
                     }
@@ -61,6 +67,7 @@ class Player {
                         nowTile.occupied = false;
                         nextTile.occupied = true;
                         this.x -= 50
+                        this.direction = "left";
                     }
                     if (this.alive && this.isDead()) {
                       this.alive = false;
@@ -74,7 +81,8 @@ class Player {
                     if (this.isTile(this.x, this.y + 50) && nextTile.occupied === false) {
                         nowTile.occupied = false;
                         nextTile.occupied = true;
-                        this.y += 50   
+                        this.y += 50
+                        this.direction = "down";
                     }
                     if (this.alive && this.isDead()) {
                       this.alive = false;
@@ -88,7 +96,8 @@ class Player {
                     if (this.isTile(this.x + 50, this.y) && nextTile.occupied === false) {
                         nowTile.occupied = false;
                         nextTile.occupied = true;
-                        this.x += 50 
+                        this.x += 50
+                        this.direction = "right"
                     }
                     if (this.alive && this.isDead()) {
                       this.alive = false;
@@ -125,13 +134,14 @@ class Player {
     }
 
     draw() {
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        c.fillStyle = 'red'
-        c.fill();
-        c.closePath()
-
-        // c.drawImage(this.image, this.x, this.y)
+        // c.beginPath()
+        // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+        // c.fillStyle = 'red'
+        // c.fill();
+        // c.closePath()
+        
+        this.pickImage();
+        c.drawImage(this.image, this.x - 20, this.y - 20, 40, 40)
     }
 
     currentTile() {
@@ -228,6 +238,20 @@ class Player {
         this.alive = undefined;
         this.victory = undefined;
         this.lastkey = undefined;
+    }
+
+    pickImage() {
+
+        if (this.direction === 'right') {
+            this.image = shovelRight;
+        } else if (this.direction === 'left') {
+            this.image = shovelLeft;
+        } else if (this.direction === 'down') {
+            this.image = shovelDown;
+        } else {
+            this.image = shovelRight;
+        }
+    
     }
 }
 

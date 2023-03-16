@@ -4,6 +4,13 @@ import Tile from "./tile.js";
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
+const shovelRight = new Image();
+shovelRight.src = "./images/shovels/Shovel_Yellow_Right.png";
+const shovelLeft = new Image();
+shovelLeft.src = "./images/shovels/Shovel_Yellow_Left.png";
+const shovelDown = new Image();
+shovelDown.src = "./images/shovels/Shovel_Yellow_Down.png";
+
 class AI {
   constructor(x, y) {
     this.x = x;
@@ -17,7 +24,9 @@ class AI {
     this.lastKey = "";
     this.canMove = true;
     this.canBreak = true;
-    this.breakCount = 0
+    this.breakCount = 0;
+    this.direction = "left";
+    this.image;
   }
 
   moveAndBreak() {
@@ -28,7 +37,6 @@ class AI {
   }
 
   makeMove() {
-
     if (!this.canMove) return false;
 
     const directions = ["north", "south", "east", "west"];
@@ -50,6 +58,7 @@ class AI {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.y -= 50;
+          this.direction = "up";
         }
         if (this.alive && this.isDead()) {
           this.alive = false;
@@ -68,6 +77,7 @@ class AI {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.x -= 50;
+          this.direction = "left";
         }
         if (this.alive && this.isDead()) {
           this.alive = false;
@@ -86,6 +96,7 @@ class AI {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.y += 50;
+          this.direction = "down"
         }
         if (this.alive && this.isDead()) {
           this.alive = false;
@@ -104,6 +115,7 @@ class AI {
           nowTile.occupied = false;
           nextTile.occupied = true;
           this.x += 50;
+          this.direction = "right"
         }
         if (this.alive && this.isDead()) {
           this.alive = false;
@@ -111,30 +123,42 @@ class AI {
         break;
     }
     // throttle
-    this.canMove = false
-    setTimeout(() => this.canMove = true, 200)
+    this.canMove = false;
+    setTimeout(() => (this.canMove = true), 200);
   }
 
   break() {
     if (!this.canBreak) return false;
     switch (this.lastKey) {
       case "north":
-        if (this.isTile(this.x, this.y - 50) && this.getAnyTileXY(this.x, this.y - 50).health > 0) {
+        if (
+          this.isTile(this.x, this.y - 50) &&
+          this.getAnyTileXY(this.x, this.y - 50).health > 0
+        ) {
           this.breakTile(this.x, this.y - 50);
         }
         break;
       case "west":
-        if (this.isTile(this.x - 50, this.y) && this.getAnyTileXY(this.x - 50, this.y).health > 0) {
+        if (
+          this.isTile(this.x - 50, this.y) &&
+          this.getAnyTileXY(this.x - 50, this.y).health > 0
+        ) {
           this.breakTile(this.x - 50, this.y);
         }
         break;
       case "south":
-        if (this.isTile(this.x, this.y + 50) && this.getAnyTileXY(this.x, this.y + 50).health > 0) {
+        if (
+          this.isTile(this.x, this.y + 50) &&
+          this.getAnyTileXY(this.x, this.y + 50).health > 0
+        ) {
           this.breakTile(this.x, this.y + 50);
         }
         break;
       case "east":
-        if (this.isTile(this.x + 50, this.y) && this.getAnyTileXY(this.x + 50, this.y).health > 0) {
+        if (
+          this.isTile(this.x + 50, this.y) &&
+          this.getAnyTileXY(this.x + 50, this.y).health > 0
+        ) {
           this.breakTile(this.x + 50, this.y);
         }
         break;
@@ -144,11 +168,14 @@ class AI {
   }
 
   draw() {
-    c.beginPath();
-    c.arc(this.x + 10, this.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = "yellow";
-    c.fill();
-    c.closePath();
+    // c.beginPath();
+    // c.arc(this.x + 10, this.y, this.radius, 0, Math.PI * 2);
+    // c.fillStyle = "yellow";
+    // c.fill();
+    // c.closePath();
+
+    this.pickImage();
+    c.drawImage(this.image, this.x - 10, this.y - 20, 40, 40);
   }
 
   currentTile() {
@@ -244,6 +271,18 @@ class AI {
     this.alive = undefined;
     this.victory = undefined;
     this.lastkey = undefined;
+  }
+
+  pickImage() {
+    if (this.direction === "right") {
+      this.image = shovelRight;
+    } else if (this.direction === "left") {
+      this.image = shovelLeft;
+    } else if (this.direction === "down") {
+      this.image = shovelDown;
+    } else {
+      this.image = shovelLeft;
+    }
   }
 }
 
