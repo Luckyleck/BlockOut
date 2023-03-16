@@ -41,7 +41,7 @@ function localAnimate(player1, player2, board) {
       } else {
         c.font = "100px Georgia";
         c.fillStyle = "Orange";
-        c.fillText("Blue Wins!", canvas.width / 4, canvas.height / 2);
+        c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         return; // stop the animation
@@ -51,7 +51,7 @@ function localAnimate(player1, player2, board) {
       } else {
         c.font = "100px Georgia";
         c.fillStyle = "Orange";
-        c.fillText("Red Wins!", canvas.width / 4, canvas.height / 2);
+        c.fillText("Red Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         return; // stop the animation
@@ -81,7 +81,7 @@ function startPlayerGame() {
   
   board = new Board();
   playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
-  playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 1.5), Board.mapHeight + (Tile.size / 2))
+  playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
 
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
@@ -103,10 +103,10 @@ function aiAnimate(player1, ai, board) {
       } else {
         c.font = "100px Georgia";
         c.fillStyle = "Orange";
-        c.fillText("Rambo wins!", canvas.width / 4, canvas.height / 2);
-        spawnBtnAI.style.display = "block"; // show the spawn button
+        c.fillText("Rambo wins!", Board.mapWidth / 2 - 150, canvas.height / 2);
+        spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
-        return; // stop the animation
+        return; 
       }
       if (ai.alive && !player1.victory) {
         ai.draw();
@@ -117,10 +117,10 @@ function aiAnimate(player1, ai, board) {
       } else {
         c.font = "100px Georgia";
         c.fillStyle = "Orange";
-        c.fillText("Player wins!", canvas.width / 4, canvas.height / 2);
-        spawnBtnAI.style.display = "block"; // show the spawn button
+        c.fillText("Player wins!", Board.mapWidth / 2 - 150, canvas.height / 2);
+        spawnBtnAI.style.display = "block"; 
         spawnBtnPlayer.style.display = "block";
-        return; // stop the animation
+        return; // 
       }
     }
     aiAnimate(player1, ai, board);

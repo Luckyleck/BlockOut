@@ -66,6 +66,7 @@ aside {
 
 #title {
   /* background-color: grey; */
+  color: black;
   height:1vw;
   margin-top: 14px;
   font-size: 400%;
@@ -177,7 +178,7 @@ aside h2 {
   position: relative;
   border-radius: 20px;
   font-weight: bold;
-  bottom: 20px;
+  /* bottom: 10px; */
 }
 
 .controls div {

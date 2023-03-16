@@ -60,21 +60,20 @@ Now what if a player decides to isolate themselves on an island, disallowing the
 
 ### List of features
 
-- UI
+<!-- - UI
     - 'How to play' pop up screen
     - 'Choose character screen'
-    - 'Pause button'
+    - 'Pause button' -->
 - Gameplay
-    - 'Count down clock'
-    - 'Dynamically changing game platform'
+    <!-- - 'Count down clock' -->
+    <!-- - 'Dynamically changing game platform'
         - Shrinking platform
         - <img src="https://thumbs.gfycat.com/FragrantPastelAmericanwarmblood-max-1mb.gif" style="border-radius:15px; ">
-        - Block
+        - Block -->
     - 'Winner display'
     - Player
         - Ability to move
         - Ability to destroy ground
-        - Ability to strike and stun opponent
         - Ability to fall through field
 
 ### *The game will look similar to this*
@@ -88,11 +87,6 @@ The player animations themselves will be simple in nature, nothing fancy other t
 
 - Movement
     - Turning
-    - Falling
-- Attacking
-    - Striking
-    - Being struck
-- Digging
 ---
 ## Technologies
 
@@ -114,11 +108,11 @@ To be drawn
 |-|-|
 |*Friday*| Develop fundemental skills on canvas
 |*Saturday*| Research & learn required methods for game & create files and pseudo code 
-|*Sunday*| Create code required for basic game functionality and grab/create textures
-|*Monday*| Build main game page and add peripherals such as instructions and links
-|*Tuesday*| Create better animations and flesh out basic AI
-|*Wednesday*| Start testing game and debugging
-|*Thursday*| Final touches
+|*Sunday*| Create code required for basic game functionality,render board and player
+|*Monday*| Build main game page and debug, add AI
+|*Tuesday*| Debug more
+|*Wednesday*| Add Basic CSS
+|*Thursday*| Finish Game
 
 
 

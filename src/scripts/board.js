@@ -34,7 +34,7 @@ class Board {
   static mapHeight = Board.map.length * Tile.size;
 
   // Map Start x and y
-  static gameFieldX = Board.canvasCenterX / 2 / 2; //300
+  static gameFieldX = Board.canvasCenterX / 2 / 2 + 60; //300
   static gameFieldY = Board.canvasCenterY / 4 ; //100
 
   // Map End x and y
@@ -112,7 +112,7 @@ class Board {
           c.globalAlpha = 1;
         } else if (tile instanceof Boundary) {
           c.shadowBlur = 8;
-          c.shadowColor = "lightgrey";
+          c.shadowColor = "black";
           c.fillStyle = "grey";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           // c.lineWidth = 2;

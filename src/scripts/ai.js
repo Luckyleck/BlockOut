@@ -145,7 +145,7 @@ class AI {
 
   draw() {
     c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    c.arc(this.x + 10, this.y, this.radius, 0, Math.PI * 2);
     c.fillStyle = "yellow";
     c.fill();
     c.closePath();
