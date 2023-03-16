@@ -17,6 +17,7 @@ class AI {
     this.lastKey = "";
     this.canMove = true;
     this.canBreak = true;
+    this.breakCount = 0
   }
 
   moveAndBreak() {
@@ -118,22 +119,22 @@ class AI {
     if (!this.canBreak) return false;
     switch (this.lastKey) {
       case "north":
-        if (this.isTile(this.x, this.y - 50)) {
+        if (this.isTile(this.x, this.y - 50) && this.getAnyTileXY(this.x, this.y - 50).health > 0) {
           this.breakTile(this.x, this.y - 50);
         }
         break;
       case "west":
-        if (this.isTile(this.x - 50, this.y)) {
+        if (this.isTile(this.x - 50, this.y) && this.getAnyTileXY(this.x - 50, this.y).health > 0) {
           this.breakTile(this.x - 50, this.y);
         }
         break;
       case "south":
-        if (this.isTile(this.x, this.y + 50)) {
+        if (this.isTile(this.x, this.y + 50) && this.getAnyTileXY(this.x, this.y + 50).health > 0) {
           this.breakTile(this.x, this.y + 50);
         }
         break;
       case "east":
-        if (this.isTile(this.x + 50, this.y)) {
+        if (this.isTile(this.x + 50, this.y) && this.getAnyTileXY(this.x + 50, this.y).health > 0) {
           this.breakTile(this.x + 50, this.y);
         }
         break;

@@ -5,6 +5,9 @@ import Playertwo from "./playertwo.js"
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
 
+const playerImage = new Image();
+playerImage.src = './images/No_background_shovel.png';
+
 class Player {
 
     constructor(x, y) {
@@ -18,6 +21,7 @@ class Player {
         this.currentPlace = this.getPlayerTile();
         this.alive = true;
         this.victory = false;
+        this.image = playerImage;
         // this.row = this.currentTile[0]
         // this.row = this.currentTile[1]
 
@@ -126,6 +130,8 @@ class Player {
         c.fillStyle = 'red'
         c.fill();
         c.closePath()
+
+        // c.drawImage(this.image, this.x, this.y)
     }
 
     currentTile() {

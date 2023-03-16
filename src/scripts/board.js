@@ -112,7 +112,7 @@ class Board {
           c.globalAlpha = 1;
         } else if (tile instanceof Boundary) {
           c.shadowBlur = 8;
-          c.shadowColor = "white";
+          c.shadowColor = "lightgrey";
           c.fillStyle = "grey";
           c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           // c.lineWidth = 2;
