@@ -1,4 +1,4 @@
-<h1 style="font-family: Rockwell">Spleef</h1>
+<h1 style="font-family: Rockwell">Block Out</h1>
 
 Created by Alex Lecky
 
@@ -13,7 +13,7 @@ Created by Alex Lecky
 
 ## Background
 
-In the world of minecraft, there is such a game that has been named spleef. Minecraft a game where users are able to interact with and manipulate a 3d 'blocky' world.
+In the world of minecraft, there is such a game that has been named **'spleef'**. Minecraft a game where users are able to interact with and manipulate a 3d 'blocky' world.
 
 ![minecraft](https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_656/b_white/f_auto/q_auto/ncom/software/switch/70010000000964/811461b8d1cacf1f2da791b478dccfe2a55457780364c3d5a95fbfcdd4c3086f)
 
@@ -39,9 +39,10 @@ Personally, I've spent much time enjoying this mini game. It's always a fast pac
 
 ## Functionality
 
-This project will based off this spleef game. It will be implemented in a 2d over the top style, and will involved 2 players (Player vs Player) or (Player vs Computer). Since devolping a fully funcitonal 3d game is above my current skill level, 2d styled with minimalistic art will satisfy for now. The main functionality will be the same as Minecraft's spleef but it'll be a bit more set in stone.
+This project is based off this spleef game. It is implemented in a 2d over the top style, and involves 2 players (Player vs Player) or (Player vs Computer). Since devolping a fully funcitonal 3d game is above my current skill level, 2d styled with minimalistic art satisifies for now. The main functionality is the same as Minecraft's spleef but it'll be a bit more set in stone.
 
-The players will spawn a top this appearingly floating dirt retangle, each holding a shovel in the hand. There will be a count down that will initiate the start of the game. Once begun, the players will use the **WASD** or **Arrow Keys** to traverse across the platform and another button like space or enter to use their shovel to break the block next to them.
+The players spawn a top this floating patch of earth. The player's markers are little pixelated shovels. Once begun, the players use the **WASD** or **Arrow Keys** to traverse across the platform and another button like space or enter to use their shovel to break the block next to them.
+</br>
 <img src="https://gcdnb.pbrd.co/images/KkNMDd3507Tx.png?o=1" width="100" style="border-radius: 10px">
 
 Once a player breaks a block, it will expose the next layer of block beneath that broken one, in total their will be 3 layers. Only once the last layer is broken will there no longer be a block for the player to stand on, allowing the player to fall through and be eliminated.
@@ -57,6 +58,8 @@ can try to
 - run down the time and survive the enclosing walls (passive)
 
 Now what if a player decides to isolate themselves on an island, disallowing the opponent to reach their position? Typically in spleef there is a 3rd factor, an enviroment variable we call it. Usually this means that the playing area (platform) will decrease in size every 15 seconds for example. Ultimately there will be a platform only big enough for one person should neither player choose to fight, leaving only one victor. So players are also racing against the clock.
+
+> This feature is yet to implemented
 
 ### List of features
 
@@ -76,29 +79,21 @@ Now what if a player decides to isolate themselves on an island, disallowing the
         - Ability to destroy ground
         - Ability to fall through field
 
-### *The game will look similar to this*
-<img src="https://gcdnb.pbrd.co/images/d7uBPBcDSmCD.gif?o=1" style="border-radius:30px; ">
+### *The game currently looks like this*
+<img src="https://gcdnb.pbrd.co/images/qCgBjDh7WZwJ.png?o=1" style="border-radius:30px; ">
 
 
 
 ---
 
-The player animations themselves will be simple in nature, nothing fancy other than just some smoothing effects. The exact animations required are;
+The player animations themselves are simple in nature, nothing fancy other than just some smoothing effects. The exact animations required are;
 
 - Movement
     - Turning
 ---
 ## Technologies
 
-The techonologies required for this game should be very minimal. The goal is to work primarily with vanilla js. Canvas will be the main tool that I will utilize.
-
-There are some libraries that make local multiplayer gameplay easier to implement but I believe I should be able to do without.
-
----
-
-## Wireframes
-
-To be drawn
+The technologies for this game are very simple. It uses purely javascript and it's canvas feature. In the future there may be room for some additional libraries but in it's current state, javascript and canvas are the only things required.
 
 ---
 
@@ -108,7 +103,7 @@ To be drawn
 |-|-|
 |*Friday*| Develop fundemental skills on canvas
 |*Saturday*| Research & learn required methods for game & create files and pseudo code 
-|*Sunday*| Create code required for basic game functionality,render board and player
+|*Sunday*| Create code required for basic game functionality, render board and player
 |*Monday*| Build main game page and debug, add AI
 |*Tuesday*| Debug more
 |*Wednesday*| Add Basic CSS

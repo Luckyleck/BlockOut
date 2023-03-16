@@ -139,6 +139,14 @@ class Board {
     });
   }
 
+  // shrink() {
+  //   Board.map = Board.map.pop().shift();
+  //   Board.map.forEach((row) => {
+  //     row.shift();
+  //     row.pop();
+  //   })
+  // }
+
   reset() {
     for (let i = 0; i < Board.map.length; i++) {
       for (let j = 0; j < Board.map[i].length; j++) {
@@ -152,35 +160,35 @@ class Board {
   }
 }
 
-let mouse = {
-  x: undefined,
-  y: undefined
-}
+// let mouse = {
+//   x: undefined,
+//   y: undefined
+// }
 
-window.addEventListener('mousemove',
-  function (event) {
-    mouse.x = event.x;
-    mouse.y = event.y;
-    // console.log(mouse)
-  })
+// window.addEventListener('mousemove',
+//   function (event) {
+//     mouse.x = event.x;
+//     mouse.y = event.y;
+//     // console.log(mouse)
+//   })
 
-window.addEventListener("mousemove", function (event) {
-  const gameFieldX = canvas.width / 4;
-  const gameFieldY = canvas.height / 8;
-  const tileWidth = Board.map[0][0].size;
-  const tileHeight = Board.map[0][0].size;
+// window.addEventListener("mousemove", function (event) {
+//   const gameFieldX = canvas.width / 4;
+//   const gameFieldY = canvas.height / 8;
+//   const tileWidth = Board.map[0][0].size;
+//   const tileHeight = Board.map[0][0].size;
 
-  const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-  const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+//   const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+//   const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
-  const tileX = Math.floor((mouseX - gameFieldX) / tileWidth);
-  const tileY = Math.floor((mouseY - gameFieldY) / tileHeight);
+//   const tileX = Math.floor((mouseX - gameFieldX) / tileWidth);
+//   const tileY = Math.floor((mouseY - gameFieldY) / tileHeight);
 
-  if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
-    const tile = Board.map[tileY][tileX];
-    //   console.log(tile);
-  }
-});
+//   if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
+//     const tile = Board.map[tileY][tileX];
+//     //   console.log(tile);
+//   }
+// });
 
 // var gridSize = 25;
 // var lineColor = "#ccc";

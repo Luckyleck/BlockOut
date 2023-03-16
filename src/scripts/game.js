@@ -13,13 +13,22 @@ const c = canvas.getContext("2d");
 //buttons
 const spawnBtnPlayer = document.getElementById("spawn-btn-player");
 const spawnBtnAI = document.getElementById("spawn-btn-ai")
+const playAgain = document.getElementById("play-again")
+playAgain.style.display = "none"
 
 spawnBtnPlayer.addEventListener("click", () => {
   startPlayerGame();
+  playAgain.style.display = "none"
 })
 
 spawnBtnAI.addEventListener("click", () => {
   startAiGame();
+  playAgain.style.display = "none";
+})
+
+playAgain.addEventListener('click', () => {
+  playerTwo instanceof AI ? startAiGame() : startPlayerGame();
+  playAgain.style.display = "none"
 })
 // myAudio.play();
 
@@ -44,6 +53,7 @@ function localAnimate(player1, player2, board) {
         c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
+        playAgain.style.display = "block"
         return; // stop the animation
       }
       if (player2.alive && !player1.victory) {
@@ -54,6 +64,7 @@ function localAnimate(player1, player2, board) {
         c.fillText("Red Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
+        playAgain.style.display = "block";
         return; // stop the animation
       }
     }
@@ -106,6 +117,7 @@ function aiAnimate(player1, ai, board) {
         c.fillText("Rambo wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
         spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
+        playAgain.style.display = "block";
         return; 
       }
       if (ai.alive && !player1.victory) {
@@ -120,9 +132,11 @@ function aiAnimate(player1, ai, board) {
         c.fillText("Player wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
         spawnBtnAI.style.display = "block"; 
         spawnBtnPlayer.style.display = "block";
+        playAgain.style.display = "block";
         return; // 
       }
     }
+    // board.shrink();
     aiAnimate(player1, ai, board);
   });
 }
