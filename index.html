@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="reset" href="./dist/reset.css" />
   <link rel="stylesheet" href="./dist/main.css" />
-  <link rel="icon" type="image/x-icon" href="/favicon/cube_no_back.ico">
+  <link rel="icon" type="image/x-icon" href="./favicon/cube_no_back.ico">
   <script src="./dist/main.js" defer></script>
   <title>Block-Out</title>
 </head>
@@ -19,34 +19,46 @@
 
       <div class="header">
         <h1 id="title">Block-Out</h1>
+        <div></div>
       </div>
 
       <div class="links">
-        <a href="https://github.com/Luckyleck">
-          <img id="github" src="/images/github_no_middle.png" alt="github link">
+        <a href="https://github.com/Luckyleck/JS-Project">
+          <img id="github" src="./images/github_no_middle.png" alt="github link">
         </a>
         <h2>Made by Alex Lecky</h2>
       </div>
 
-      <div class="Welcome">
+      <div class="welcome">
         <p>
           Welcome to Block-Out. In this game, you and your opponent are on a
-          floating patch of earth in the sky. </br>To win the game, you must break the
+          floating patch of earth in the sky. </br></br>To win the game, you must break the
           ground beneath your opponent while also being careful not to fall into any holes yourself.
         </p>
       </div>
     
-      <div class="Controls">
-        <p>Player 1</p>
-        <img id="wasd" src='/images/WASD_color.png'>
-        <img id="spacebar" src='/images/spacebar-color.png'>
-        <p>Player 2</p>
-        <img id="arrows" src='/images/Arrows_color.png'>
-        <img id="return" src='/images/return_color.png'>
+      <div class="controls">
+        <h2>Player 1 Controls</h2>
+        <div>
+        <p>Move</p>
+        <p>Break</p>
+        </div>
+        <img id="wasd" src='./images/WASD_color.png'>
+        <img id="spacebar" src='./images/spacebar-color.png'>
+        <h2>Player 2 Controls</h2>
+        <img id="arrows" src='./images/Arrows_color.png'>
+        <img id="return" src='./images/return_color.png'>
       </div>
+
+      <div class="bottom">
+        <p>
+          Player 1 is red </br> Player 2 is blue</br>
+          Rambo (AI) is Yellow.
+        </p>
+      </div>
+    </aside>
     <button id="spawn-btn-player">Multiplayer</button>
     <button id="spawn-btn-ai">Single Player</button>
-  </aside>
   <canvas id="canvas" height="800" width="1200">Canvas is broken</canvas>
   <audio id="audio" src="https://www.youtube.com/watch?v=BWe_PxKuu9c" autoplay></audio>
   </div>

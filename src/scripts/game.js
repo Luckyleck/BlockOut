@@ -99,7 +99,7 @@ function aiAnimate(player1, ai, board) {
     board.draw();
     if (player1 && ai) {
       if (player1.alive && !ai.victory) {
-        player1.draw();
+     player1.draw();
       } else {
         c.font = "200px Georgia";
         c.fillStyle = "Orange";
