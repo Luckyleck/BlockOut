@@ -6,6 +6,18 @@ import Player from './player.js'
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d")
 
+const grassFull = new Image();
+grassFull.src = "./images/tiles/grass.png";
+
+const stone = new Image();
+stone.src = "./images/tiles/stone_pink.png"
+
+const dirtLight = new Image();
+dirtLight.src = "./images/tiles/dirt_light.png"
+
+const dirtDark = new Image();
+dirtDark.src = "./images/tiles/dirt_dark.png";
+
 // c.fillRect(20, 20, 20, 20)
 
 class Board {
@@ -80,28 +92,29 @@ class Board {
           //   console.log(tile.row, tile.col);
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          c.fillStyle = "green";
-          c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          // c.lineWidth = 2;
-          // c.strokeStyle = "black"; // outline color
-          // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          // c.drawImage(grass,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
+          // c.fillStyle = "green";
+          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // // c.lineWidth = 2;
+          // // c.strokeStyle = "black"; // outline color
+          // // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          c.drawImage(grassFull,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 2) {
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          c.fillStyle = "#80461B";
-          c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          c.lineWidth = 2;
-          c.strokeStyle = "black";
-          c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.fillStyle = "#80461B";
+          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.lineWidth = 2;
+          // c.strokeStyle = "black";
+          // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          c.drawImage(dirtLight,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 1) {
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          c.fillStyle = "#362419";
-          c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          c.lineWidth = 2;
-          c.strokeStyle = "black";
-          c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.fillStyle = "#362419";
+          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.lineWidth = 2;
+          // c.strokeStyle = "black";
+          c.drawImage(dirtDark,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 0) {
           c.globalAlpha = 0.0;
           c.fillStyle = "#ffebcd"; // color of background
@@ -111,15 +124,16 @@ class Board {
           c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.globalAlpha = 1;
         } else if (tile instanceof Boundary) {
-          c.shadowBlur = 8;
-          c.shadowColor = "black";
-          c.fillStyle = "grey";
-          c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          // c.lineWidth = 2;
-          // c.strokeStyle = "black";
-          // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          c.shadowBlur = 0
-          c.shadowColor = undefined;
+          // c.shadowBlur = 8;
+          // c.shadowColor = "black";
+          // c.fillStyle = "grey";
+          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // // c.lineWidth = 2;
+          // // c.strokeStyle = "black";
+          // // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
+          // c.shadowBlur = 0
+          // c.shadowColor = undefined;
+          c.drawImage(stone,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         }
       });
     });

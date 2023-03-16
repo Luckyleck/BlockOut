@@ -101,9 +101,9 @@ function aiAnimate(player1, ai, board) {
       if (player1.alive && !ai.victory) {
      player1.draw();
       } else {
-        c.font = "100px Georgia";
+        c.font = "100px system-ui";
         c.fillStyle = "Orange";
-        c.fillText("Rambo wins!", Board.mapWidth / 2 - 75, canvas.height / 2);
+        c.fillText("Rambo wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
         spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
         return; 

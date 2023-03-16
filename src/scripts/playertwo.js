@@ -23,7 +23,7 @@ class Playertwo {
     this.currentPlace = this.getPlayerTile();
     this.alive = true;
     this.victory = false;
-    this.direction = "left";
+    this.direction = 'left'
     this.image;
     // this.row = this.currentTile[0]
     // this.row = this.currentTile[1]
@@ -36,6 +36,7 @@ class Playertwo {
       var nextTile;
       switch (key) {
         case "ArrowUp":
+
           this.lastKey = "ArrowUp";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x, this.y - 50);
@@ -50,6 +51,7 @@ class Playertwo {
           }
           break;
         case "ArrowLeft":
+
           this.lastKey = "ArrowLeft";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x - 50, this.y);
@@ -64,6 +66,7 @@ class Playertwo {
           }
           break;
         case "ArrowDown":
+ 
           this.lastKey = "ArrowDown";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x, this.y + 50);
@@ -78,6 +81,7 @@ class Playertwo {
           }
           break;
         case "ArrowRight":
+      
           this.lastKey = "ArrowRight";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x + 50, this.y);
@@ -229,16 +233,18 @@ class Playertwo {
   }
 
   pickImage() {
-    if (this.direction === "right") {
-      this.image = shovelRight;
-    } else if (this.direction === "left") {
-      this.image = shovelLeft;
-    } else if (this.direction === "down") {
-      this.image = shovelDown;
-    } else {
-      this.image = shovelLeft;
+
+        if (this.direction === 'right') {
+            this.image = shovelRight;
+        } else if (this.direction === 'left') {
+            this.image = shovelLeft;
+        } else if (this.direction === 'down') {
+            this.image = shovelDown;
+        } else {
+            this.image = shovelRight;
+        }
+    
     }
-  }
 }
 
 export default Playertwo;
