@@ -25,9 +25,6 @@ class Playertwo {
     this.victory = false;
     this.direction = 'left'
     this.image;
-    // this.row = this.currentTile[0]
-    // this.row = this.currentTile[1]
-
     this.lastKey = "";
 
     window.addEventListener("keydown", ({ key }) => {
@@ -121,18 +118,10 @@ class Playertwo {
           console.log("hello");
           break;
       }
-      // console.log(keys.d.pressed)
-      // console.log(keys.s.pressed)
     });
   }
 
   draw() {
-    // c.beginPath();
-    // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    // c.fillStyle = "blue";
-    // c.fill();
-    // c.closePath();
-
     this.pickImage();
     c.drawImage(this.image, this.x - 20, this.y - 20, 40, 40);
   }
@@ -164,8 +153,6 @@ class Playertwo {
     return Board.map[row][col];
   }
 
-  // breakTiles
-
   breakTile(x, y) {
     let pos = this.xyConvert(x, y);
     let row = pos[0];
@@ -181,7 +168,6 @@ class Playertwo {
         }
       }
     }
-    // console.log(tile);
   }
 
   // Tile existence logic (use for boundary detection)
