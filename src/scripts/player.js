@@ -27,14 +27,9 @@ class Player {
         this.victory = false;
         this.direction = 'right'
         this.image;
-        // this.row = this.currentTile[0]
-        // this.row = this.currentTile[1]
-
         this.lastKey = ''
 
         window.addEventListener('keydown', ({ key }) => {
-            // console.log(key)
-            // var nextTile = this.getAnyTileXY(this.x, this.y - 50);
             var nowTile;
             var nextTile;
             switch (key) {
@@ -128,18 +123,10 @@ class Player {
                     }
                     break
             }
-            // console.log(keys.d.pressed)
-            // console.log(keys.s.pressed)
         })
     }
 
-    draw() {
-        // c.beginPath()
-        // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        // c.fillStyle = 'red'
-        // c.fill();
-        // c.closePath()
-        
+    draw() { 
         this.pickImage();
         c.drawImage(this.image, this.x - 20, this.y - 20, 40, 40)
     }
@@ -154,8 +141,6 @@ class Player {
     getPlayerTile() {
         let row =  this.currentTile()[0]
         let col = this.currentTile()[1]
-        // console.log([row, col])
-        // console.log(Board.map[row][col])
         return Board.map[row][col]
     }
 
@@ -217,8 +202,7 @@ class Player {
 
     isDead() {
         let tile = this.getPlayerTile();
-        
-        // console.log(tile)
+   
         if (tile.health === 0) {
             this.alive = false
         } else {
