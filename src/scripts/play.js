@@ -17,7 +17,6 @@ class Game {
 
   start() {
     console.log(this.board, this.playerOne, this.playerTwo)
-    // this.board.reset();
     this.board = undefined;
     this.playerOne = undefined;
     this.playerTwo = undefined;
@@ -73,34 +72,6 @@ class Game {
       this.localAnimate(player1, player2, board);
     });
   }
-
-  // localAnimate() {
-  //   window.requestAnimationFrame(() => {
-  //     c.clearRect(0, 0, Board.gameFieldX, Board.gameFieldY);
-  //     this.board.draw();
-  //     if (this.playerOne && this.playerTwo) {
-  //       if (this.playerOne.alive && !this.playerTwo.victory) {
-  //         this.playerOne.draw();
-  //       } else {
-  //         c.font = "200px Georgia";
-  //         c.fillStyle = "Orange";
-  //         c.fillText("Blue Wins!", canvas.width / 4, canvas.height / 2);
-  //         // spawnBtnPlayer.style.display = "block"; // show the spawn button
-  //         return; // stop the animation
-  //       }
-  //       if (this.playerTwo.alive && !this.playerOne.victory) {
-  //         this.playerTwo.draw();
-  //       } else {
-  //         c.font = "200px Georgia";
-  //         c.fillStyle = "Orange";
-  //         c.fillText("Red Wins!", canvas.width / 4, canvas.height / 2);
-  //         // spawnBtnPlayer.style.display = "block"; // show the spawn button
-  //         return; // stop the animation
-  //       }
-  //     }
-  //     this.localAnimate();
-  //   });
-  // }
 }
 
 export default Game
