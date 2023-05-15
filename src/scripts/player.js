@@ -38,15 +38,12 @@ class Player {
                     this.lastKey = 'w'
                     nowTile = this.getPlayerTile();
                     nextTile = this.getAnyTileXY(this.x, this.y - 50);
-                    // nextTile = this.getAnyTileXY(this.x, this.y - 50);
                     nowTile = this.getPlayerTile();
                     if (this.isTile(this.x, this.y - 50) && nextTile.occupied === false) {
                         nowTile.occupied = false
                         nextTile.occupied = true
                         this.y -= 50
                         this.direction = 'up'
-                        // console.log(nowTile)
-                        // console.log(nextTile)
                     }
                     if (this.alive && this.isDead()) {
                         this.alive = false
