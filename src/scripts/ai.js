@@ -168,12 +168,6 @@ class AI {
   }
 
   draw() {
-    // c.beginPath();
-    // c.arc(this.x + 10, this.y, this.radius, 0, Math.PI * 2);
-    // c.fillStyle = "yellow";
-    // c.fill();
-    // c.closePath();
-
     this.pickImage();
     c.drawImage(this.image, this.x - 10, this.y - 20, 40, 40);
   }
@@ -181,15 +175,12 @@ class AI {
   currentTile() {
     let row = Math.floor((this.y - Board.playFieldStartY) / Tile.size + 1); // row is y
     let col = Math.floor((this.x - Board.playFieldStartX) / Tile.size + 1); // col is x
-    // console.log([row, col]);
     return [row, col];
   }
 
   getPlayerTile() {
     let row = this.currentTile()[0];
     let col = this.currentTile()[1];
-    // console.log([row, col]);
-    // console.log(Board.map[row][col]);
     return Board.map[row][col];
   }
 
@@ -222,7 +213,6 @@ class AI {
         }
       }
     }
-    // console.log(tile);
   }
 
   // Tile existence logic (use for boundary detection)
