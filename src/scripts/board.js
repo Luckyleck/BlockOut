@@ -39,40 +39,6 @@ class Board {
     ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
   ]
 
-  // static map2 = [
-  //   ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", "-", "-", " ", " ", "-", "-", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", "-", "-", " ", " ", "-", "-", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", "-", "-", " ", " ", "-", "-", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-  // ]
-
-  // static map3 = [
-  //   ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", "-", "-", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", "-", " ", " ", "-", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", "-", " ", " ", "-", " ", " ", " ", " ", " ", "-"],
-  //   ["-", " ", " ", " ", " ", " ", " ", "-", "-", " ", " ", " ", " ", " ", " ", "-"],
-  //   ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
-  // ]
-
-  // static map = Board.maps[Math.random() * Board.maps.length]
-
   static canvasCenterX = canvas.width/2
   static canvasCenterY = canvas.height/2
 
@@ -124,31 +90,16 @@ class Board {
    
         // Col first, then row
         if (tile instanceof Tile && tile.health === 3) {
-          //   console.log(tile.row, tile.col);
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          // c.fillStyle = "green";
-          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          // // c.lineWidth = 2;
-          // // c.strokeStyle = "black"; // outline color
-          // // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.drawImage(grassFull,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 2) {
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          // c.fillStyle = "#80461B";
-          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          // c.lineWidth = 2;
-          // c.strokeStyle = "black";
-          // c.strokeRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
           c.drawImage(dirtLight,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 1) {
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          // c.fillStyle = "#362419";
-          // c.fillRect(startX + tile.col * tile.size, startY + tile.row * tile.size, tile.size, tile.size);
-          // c.lineWidth = 2;
-          // c.strokeStyle = "black";
           c.drawImage(dirtDark,startX + (tile.col * tile.size), startY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 0) {
           c.globalAlpha = 0.0;
@@ -174,14 +125,6 @@ class Board {
     });
   }
 
-  // shrink() {
-  //   Board.map = Board.map.pop().shift();
-  //   Board.map.forEach((row) => {
-  //     row.shift();
-  //     row.pop();
-  //   })
-  // }
-
   reset() {
     for (let i = 0; i < Board.map.length; i++) {
       for (let j = 0; j < Board.map[i].length; j++) {
@@ -194,55 +137,6 @@ class Board {
     }
   }
 }
-
-// let mouse = {
-//   x: undefined,
-//   y: undefined
-// }
-
-// window.addEventListener('mousemove',
-//   function (event) {
-//     mouse.x = event.x;
-//     mouse.y = event.y;
-//     // console.log(mouse)
-//   })
-
-// window.addEventListener("mousemove", function (event) {
-//   const gameFieldX = canvas.width / 4;
-//   const gameFieldY = canvas.height / 8;
-//   const tileWidth = Board.map[0][0].size;
-//   const tileHeight = Board.map[0][0].size;
-
-//   const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-//   const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-
-//   const tileX = Math.floor((mouseX - gameFieldX) / tileWidth);
-//   const tileY = Math.floor((mouseY - gameFieldY) / tileHeight);
-
-//   if (tileX >= 0 && tileX < Board.map[0].length && tileY >= 0 && tileY < Board.map.length) {
-//     const tile = Board.map[tileY][tileX];
-//     //   console.log(tile);
-//   }
-// });
-
-// var gridSize = 25;
-// var lineColor = "#ccc";
-
-// // Draw the grid lines
-// c.beginPath();
-// for (var x = 0; x <= canvas.width; x += gridSize) {
-//   c.moveTo(x, 0);
-//   c.lineTo(x, canvas.height);
-// }
-// for (var y = 0; y <= canvas.height; y += gridSize) {
-//   c.moveTo(0, y);
-//   c.lineTo(canvas.width, y);
-// }
-// c.strokeStyle = lineColor;
-// c.stroke();
-
-
-
 
 export default Board;
 
