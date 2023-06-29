@@ -6,7 +6,6 @@ import AI from "./ai.js";
 import Game from "./play.js"
 
 
-
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
@@ -30,7 +29,6 @@ playAgain.addEventListener('click', () => {
   playerTwo instanceof AI ? startAiGame() : startPlayerGame();
   playAgain.style.display = "none"
 })
-// myAudio.play();
 
 
 let playerOne;
@@ -174,8 +172,6 @@ function startAiGame() {
 }
 
 console.log(Board.mapWidth, Board.mapHeight, Board.gameFieldEndX, Board.gameFieldEndY)
-
-// animate();
 
 export default spawnBtnPlayer
 
