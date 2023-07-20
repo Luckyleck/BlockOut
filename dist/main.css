@@ -11,7 +11,7 @@
 }
 
 .left {
-  background-color: #d400ff;
+  background-color: #f3b9fe;
   align-self: center;
   height: 90%;
   border: 3px solid black;
@@ -33,22 +33,54 @@
 .header {
   display: flex;
   flex-direction: column;
-  background-color: red;
+  /* background-color: red; */
   height: 20%;
 }
 
 .header h1 {
-  color: black;
+  color: #312533;
   margin-top: 14px;
-  font-size: 400%;
+  font-size: 450%;
   text-align: center;
   opacity: 0.8;
-  background-color: green;
+  /* background-color: green; */
+  font-weight: bold;
 }
 
-.links a {
-
+.links {
+  display: flex;
+  height: 30%;
+  width: 100%;
+  align-self: center;
+  justify-content: center;
+  /* background-color:grey; */
+  gap: 2%;
 }
+
+.links h2 {
+  font-size: 150%;
+  font-weight: 500;
+  color: #312533;
+  font-weight: 500;
+  padding: 4% 0;
+}
+
+#github {
+  position: relative;
+  height: 100%;
+  width: auto;
+  top: 5%;
+  
+  /* border: 1px solid green; */
+}
+
+#linkedIn {
+  height: 100%;
+  scale: calc(0.9);
+  width: auto;
+  /* border: 1px solid green; */
+}
+
 
 /* #github {
   position: relative;
@@ -232,14 +264,14 @@ aside h2 {
   text-align: center;
 }
 
-.links {
+/* .links {
   display: flex;
   justify-content: center;
 }
 
 .links h2 {
   margin-left: 40px;
-}
+} */
 
 .bottom {
   position: relative;
