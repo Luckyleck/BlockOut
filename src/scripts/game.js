@@ -10,8 +10,8 @@ const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
 //buttons
-const spawnBtnPlayer = document.getElementById("spawn-btn-player");
-const spawnBtnAI = document.getElementById("spawn-btn-ai")
+const spawnBtnPlayer = document.getElementById("multiplayer-button");
+const spawnBtnAI = document.getElementById("singleplayer-button")
 const playAgain = document.getElementById("play-again")
 playAgain.style.display = "none"
 
