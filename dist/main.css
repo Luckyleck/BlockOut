@@ -185,7 +185,7 @@ body {
   height: 10%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 #spawn-btn-player {
@@ -238,4 +238,15 @@ body {
 
 #spawn-btn-ai:hover {
   background-color: #fb9025;
+}
+
+.win-message {
+  position: absolute;
+  top: 40%;
+  left: 60%;
+  width: 20%;
+  height: 20%;
+  font-size: 100px;
+  color: goldenrod;
+  background-color: green;
 }

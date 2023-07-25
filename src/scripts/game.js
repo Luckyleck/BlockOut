@@ -13,7 +13,10 @@ const c = canvas.getContext("2d");
 const spawnBtnPlayer = document.getElementById("multiplayer-button");
 const spawnBtnAI = document.getElementById("singleplayer-button")
 const playAgain = document.getElementById("play-again")
-playAgain.style.display = "none"
+const winMessage = document.getElementById("win-message")
+
+playAgain.style.display = "none";
+winMessage.style.display = "none";
 
 spawnBtnPlayer.addEventListener("click", () => {
   startPlayerGame();
@@ -45,9 +48,11 @@ function localAnimate(player1, player2, board) {
       if (player1.alive && !player2.victory) {
         player1.draw();
       } else {
-        c.font = "100px Georgia";
-        c.fillStyle = "Orange";
-        c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
+        // c.font = "100px Georgia";
+        // c.fillStyle = "Orange";
+        // c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
+        winMessage.innerText = "Blue Wins!"
+        winMessage.style.display = "block"
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         playAgain.style.display = "block"
@@ -56,9 +61,8 @@ function localAnimate(player1, player2, board) {
       if (player2.alive && !player1.victory) {
         player2.draw();
       } else {
-        c.font = "100px Georgia";
-        c.fillStyle = "Orange";
-        c.fillText("Red Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
+        winMessage.innerText = "Red Wins!"
+        winMessage.style.display = "block"
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         playAgain.style.display = "block";
