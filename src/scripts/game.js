@@ -9,9 +9,11 @@ import Game from "./play.js"
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
+debugger
+
 //buttons
-const spawnBtnPlayer = document.getElementById("multiplayer-button");
-const spawnBtnAI = document.getElementById("singleplayer-button")
+const spawnBtnPlayer = document.getElementById("spawn-btn-player");
+const spawnBtnAI = document.getElementById("spawn-btn-ai")
 const playAgain = document.getElementById("play-again")
 const winMessage = document.getElementById("win-message")
 
@@ -39,6 +41,8 @@ let playerTwo;
 let board;
 
 function localAnimate(player1, player2, board) {
+
+  console.log('hello')
   
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
@@ -51,7 +55,7 @@ function localAnimate(player1, player2, board) {
         // c.font = "100px Georgia";
         // c.fillStyle = "Orange";
         // c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
-        winMessage.innerText = "Blue Wins!"
+        winMessage.innerText = "Blue is the winner!"
         winMessage.style.display = "block"
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
@@ -74,7 +78,9 @@ function localAnimate(player1, player2, board) {
 }
 
 function startPlayerGame() {
-  // debugger
+
+  debugger
+
   spawnBtnPlayer.style.display = "none";
   spawnBtnAI.style.display = "none";
   if (board) {
@@ -141,7 +147,6 @@ function aiAnimate(player1, ai, board) {
 }
 
 function startAiGame() {
-  // debugger
   spawnBtnAI.style.display = "none";
   spawnBtnPlayer.style.display = "none";
   if (board) {
