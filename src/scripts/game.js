@@ -9,8 +9,6 @@ import Game from "./play.js"
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
-debugger
-
 //buttons
 const spawnBtnPlayer = document.getElementById("spawn-btn-player");
 const spawnBtnAI = document.getElementById("spawn-btn-ai")
@@ -23,16 +21,19 @@ winMessage.style.display = "none";
 spawnBtnPlayer.addEventListener("click", () => {
   startPlayerGame();
   playAgain.style.display = "none"
+  winMessage.style.display = "none";
 })
 
 spawnBtnAI.addEventListener("click", () => {
   startAiGame();
   playAgain.style.display = "none";
+  winMessage.style.display = "none";
 })
 
 playAgain.addEventListener('click', () => {
   playerTwo instanceof AI ? startAiGame() : startPlayerGame();
   playAgain.style.display = "none"
+  winMessage.style.display = "none";
 })
 
 
@@ -43,7 +44,7 @@ let board;
 function localAnimate(player1, player2, board) {
 
   console.log('hello')
-  
+
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -52,10 +53,7 @@ function localAnimate(player1, player2, board) {
       if (player1.alive && !player2.victory) {
         player1.draw();
       } else {
-        // c.font = "100px Georgia";
-        // c.fillStyle = "Orange";
-        // c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
-        winMessage.innerText = "Blue is the winner!"
+        winMessage.innerText = "Blue wins!"
         winMessage.style.display = "block"
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
@@ -65,8 +63,8 @@ function localAnimate(player1, player2, board) {
       if (player2.alive && !player1.victory) {
         player2.draw();
       } else {
-        winMessage.innerText = "Red Wins!"
-        winMessage.style.display = "block"
+        winMessage.innerText = "Red Wins!";
+        winMessage.style.display = "block";
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         playAgain.style.display = "block";
@@ -79,10 +77,9 @@ function localAnimate(player1, player2, board) {
 
 function startPlayerGame() {
 
-  debugger
-
   spawnBtnPlayer.style.display = "none";
   spawnBtnAI.style.display = "none";
+
   if (board) {
     board.reset();
   }
@@ -96,7 +93,7 @@ function startPlayerGame() {
   board = undefined;
   playerOne = undefined;
   playerTwo = undefined;
-  
+
   board = new Board();
   playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
   playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
@@ -116,15 +113,14 @@ function aiAnimate(player1, ai, board) {
     board.draw();
     if (player1 && ai) {
       if (player1.alive && !ai.victory) {
-     player1.draw();
+        player1.draw();
       } else {
-        c.font = "100px system-ui";
-        c.fillStyle = "Orange";
-        c.fillText("Rambo wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
+        winMessage.innerText = "Rambo wins!";
+        winMessage.style.display = "block";
         spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
         playAgain.style.display = "block";
-        return; 
+        return;
       }
       if (ai.alive && !player1.victory) {
         ai.draw();
@@ -133,10 +129,9 @@ function aiAnimate(player1, ai, board) {
         ai.break();
         // ai.makeMove();
       } else {
-        c.font = "100px Georgia";
-        c.fillStyle = "Orange";
-        c.fillText("Player wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
-        spawnBtnAI.style.display = "block"; 
+        winMessage.innerText = "You win!";
+        winMessage.style.display = "block";
+        spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
         playAgain.style.display = "block";
         return; // 
@@ -164,11 +159,11 @@ function startAiGame() {
   playerTwo = undefined;
 
   board = new Board();
-  playerOne = new Player (
+  playerOne = new Player(
     Board.gameFieldX + Tile.size * 1.5,
     Board.gameFieldY + Tile.size * 1.5
   );
-  playerTwo = new AI (
+  playerTwo = new AI(
     Board.mapWidth + (Tile.size * 0.5),
     Board.mapHeight - Tile.size / 2
   );
