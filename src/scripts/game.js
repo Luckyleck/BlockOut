@@ -43,8 +43,6 @@ let board;
 
 function localAnimate(player1, player2, board) {
 
-  console.log('hello')
-
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -95,8 +93,10 @@ function startPlayerGame() {
   playerTwo = undefined;
 
   board = new Board();
-  playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
-  playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
+  playerOne = new Player(285, 175)
+  playerTwo = new Playertwo(935, 675)
+  // playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
+  // playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
 
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
@@ -159,25 +159,28 @@ function startAiGame() {
   playerTwo = undefined;
 
   board = new Board();
-  playerOne = new Player(
-    Board.gameFieldX + Tile.size * 1.5,
-    Board.gameFieldY + Tile.size * 1.5
-  );
-  playerTwo = new AI(
-    Board.mapWidth + (Tile.size * 0.5),
-    Board.mapHeight - Tile.size / 2
-  );
+  playerOne = new Player(285, 175)
+  playerTwo = new AI(825, 625)
+  // playerOne = new Player(
+  //   Board.gameFieldX + Tile.size * 1.5,
+  //   Board.gameFieldY + Tile.size * 1.5
+  // );
+  // playerTwo = new AI(
+  //   Board.mapWidth + Tile.size / 2,
+  //   Board.mapHeight - Tile.size / 2
+  // );
 
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
   console.log(playerOne, playerTwo);
+  console.log(playerOne.currentPlace)
+  console.log(playerTwo.currentPlace)
 
   aiAnimate(playerOne, playerTwo, board);
 }
 
 console.log(Board.mapWidth, Board.mapHeight, Board.gameFieldEndX, Board.gameFieldEndY)
 
-export default spawnBtnPlayer
 
 
 
