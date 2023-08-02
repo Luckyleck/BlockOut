@@ -1,6 +1,5 @@
 import Board from "./board.js"
 import Tile from "./tile.js"
-import Playertwo from "./playertwo.js"
 
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
@@ -194,8 +193,6 @@ class Player {
 
       return [row, col]
     }
-
-    // Player dead logic
 
     isDead() {
         let tile = this.getPlayerTile();

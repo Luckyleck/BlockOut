@@ -1,9 +1,9 @@
 import Board from "./board.js";
 import Player from "./player.js";
 import Playertwo from "./playertwo.js";
-import Tile from "./tile.js";
 import AI from "./ai.js";
-import Game from "./play.js"
+// import Tile from "./tile.js";
+// import Game from "./play.js"
 
 
 const canvas = document.getElementById("canvas");
@@ -15,12 +15,12 @@ const spawnBtnAI = document.getElementById("spawn-btn-ai")
 const playAgain = document.getElementById("play-again")
 const winMessage = document.getElementById("win-message")
 
-const playerOneSpawnX = 285;
-const playerOneSpawnY = 175;
-const playerTwoSpawnX = 935;
-const playerTwoSpawnY = 675;
-const aiSpawnX = 825;
-const aiSpawnY = 625;
+const playerOneSpawnX = 285; // Board.gameFieldX + (Tile.size * 1.5), 
+const playerOneSpawnY = 175; // Board.gameFieldY + (Tile.size * 1.5)
+const playerTwoSpawnX = 935; // Board.mapWidth + (Tile.size * 2.7)
+const playerTwoSpawnY = 675; // Board.mapHeight + (Tile.size / 2)
+const aiSpawnX = 825; // Board.mapWidth + Tile.size / 2
+const aiSpawnY = 625; // Board.mapHeight - Tile.size / 2
 
 
 
@@ -105,9 +105,6 @@ function startPlayerGame() {
   playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
   playerTwo = new Playertwo(playerTwoSpawnX, playerTwoSpawnY)
   Board.startTimer();
-  // playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
-  // playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
-
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
   console.log(playerOne, playerTwo)
@@ -171,15 +168,6 @@ function startAiGame() {
   board = new Board();
   playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
   playerTwo = new AI(aiSpawnX, aiSpawnY)
-  // playerOne = new Player(
-  //   Board.gameFieldX + Tile.size * 1.5,
-  //   Board.gameFieldY + Tile.size * 1.5
-  // );
-  // playerTwo = new AI(
-  //   Board.mapWidth + Tile.size / 2,
-  //   Board.mapHeight - Tile.size / 2
-  // );
-
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
   console.log(playerOne, playerTwo);
