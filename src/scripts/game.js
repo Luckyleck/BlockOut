@@ -15,6 +15,15 @@ const spawnBtnAI = document.getElementById("spawn-btn-ai")
 const playAgain = document.getElementById("play-again")
 const winMessage = document.getElementById("win-message")
 
+const playerOneSpawnX = 285;
+const playerOneSpawnY = 175;
+const playerTwoSpawnX = 935;
+const playerTwoSpawnY = 675;
+const aiSpawnX = 825;
+const aiSpawnY = 625;
+
+
+
 playAgain.style.display = "none";
 winMessage.style.display = "none";
 
@@ -93,8 +102,9 @@ function startPlayerGame() {
   playerTwo = undefined;
 
   board = new Board();
-  playerOne = new Player(285, 175)
-  playerTwo = new Playertwo(935, 675)
+  playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
+  playerTwo = new Playertwo(playerTwoSpawnX, playerTwoSpawnY)
+  Board.startTimer();
   // playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
   // playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
 
@@ -159,8 +169,8 @@ function startAiGame() {
   playerTwo = undefined;
 
   board = new Board();
-  playerOne = new Player(285, 175)
-  playerTwo = new AI(825, 625)
+  playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
+  playerTwo = new AI(aiSpawnX, aiSpawnY)
   // playerOne = new Player(
   //   Board.gameFieldX + Tile.size * 1.5,
   //   Board.gameFieldY + Tile.size * 1.5
