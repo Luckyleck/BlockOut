@@ -124,18 +124,18 @@ class Board {
 
 
     // Draw red dot at game field (x, y)
-    c.fillStyle = "red";
-    c.beginPath();
-    c.arc(Board.gameFieldX, Board.gameFieldY, 5, 0, Math.PI * 2);
-    c.fill();
+    // c.fillStyle = "red";
+    // c.beginPath();
+    // c.arc(Board.gameFieldX, Board.gameFieldY, 5, 0, Math.PI * 2);
+    // c.fill();
 
-    // Draw red dot at play field (x, y)
-    const circleplayFieldStartX = Board.playFieldStartX;
-    const circleplayFieldStartY = Board.playFieldStartY;
-    c.fillStyle = "blue";
-    c.beginPath();
-    c.arc(circleplayFieldStartX, circleplayFieldStartY, 5, 0, Math.PI * 2);
-    c.fill();
+    // // Draw red dot at play field (x, y)
+    // const circleplayFieldStartX = Board.playFieldStartX;
+    // const circleplayFieldStartY = Board.playFieldStartY;
+    // c.fillStyle = "blue";
+    // c.beginPath();
+    // c.arc(circleplayFieldStartX, circleplayFieldStartY, 5, 0, Math.PI * 2);
+    // c.fill();
   }
 
   static shrinkPlayField() {

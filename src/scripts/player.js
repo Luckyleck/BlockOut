@@ -138,7 +138,7 @@ class Player {
     getPlayerTile() {
         let row =  this.currentTile()[0]
         let col = this.currentTile()[1]
-        return Board.map[row][col]
+        return Board?.map[row][col]
     }
 
     getAnyTile(row, col) {

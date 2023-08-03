@@ -2,8 +2,6 @@ import Board from "./board.js";
 import Player from "./player.js";
 import Playertwo from "./playertwo.js";
 import AI from "./ai.js";
-// import Tile from "./tile.js";
-// import Game from "./play.js"
 
 
 const canvas = document.getElementById("canvas");
@@ -27,26 +25,39 @@ winMessage.style.display = "none";
 
 spawnBtnPlayer.addEventListener("click", () => {
   startPlayerGame();
-  playAgain.style.display = "none"
-  winMessage.style.display = "none";
+  clearButtons();
 })
 
 spawnBtnAI.addEventListener("click", () => {
   startAiGame();
-  playAgain.style.display = "none";
-  winMessage.style.display = "none";
+  clearButtons();
 })
 
 playAgain.addEventListener('click', () => {
   playerTwo instanceof AI ? startAiGame() : startPlayerGame();
-  playAgain.style.display = "none"
-  winMessage.style.display = "none";
+  clearButtons();
 })
 
 
 let playerOne;
 let playerTwo;
 let board;
+
+function endGame (winner) {
+  winMessage.innerText = `${winner} wins!`;
+  winMessage.style.display = "block";
+  spawnBtnPlayer.style.display = "block";
+  spawnBtnAI.style.display = "block";
+  playAgain.style.display = "block";
+  Board.stopTimer();
+}
+
+function clearButtons() {
+  playAgain.style.display = "none"
+  winMessage.style.display = "none";
+  spawnBtnPlayer.style.display = "none";
+  spawnBtnAI.style.display = "none";
+}
 
 function localAnimate(player1, player2, board) {
 
@@ -84,12 +95,7 @@ function localAnimate(player1, player2, board) {
         player2.checkBoundary();
         player1.draw();
       } else {
-        winMessage.innerText = "Blue wins!"
-        winMessage.style.display = "block"
-        spawnBtnPlayer.style.display = "block"; // show the spawn button
-        spawnBtnAI.style.display = "block"; // show the spawn button
-        playAgain.style.display = "block"
-        Board.stopTimer();
+        endGame("Blue")
         return; // stop the animation
       }
       if (player2.alive && !player1.victory) {
@@ -97,12 +103,7 @@ function localAnimate(player1, player2, board) {
         player2.checkBoundary();
         player2.draw();
       } else {
-        winMessage.innerText = "Red Wins!";
-        winMessage.style.display = "block";
-        spawnBtnPlayer.style.display = "block"; // show the spawn button
-        spawnBtnAI.style.display = "block"; // show the spawn button
-        playAgain.style.display = "block";
-        Board.stopTimer();
+        endGame("Red")
         return; // stop the animation
       }
     }
@@ -112,18 +113,9 @@ function localAnimate(player1, player2, board) {
 
 function startPlayerGame() {
 
-  spawnBtnPlayer.style.display = "none";
-  spawnBtnAI.style.display = "none";
-
-  if (board) {
-    board.reset();
-  }
-  if (playerOne) {
-    playerOne.reset();
-  }
-  if (playerTwo) {
-    playerTwo.reset();
-  }
+  board && board.reset();
+  playerOne && playerOne.reset();
+  playerTwo && playerTwo.reset();
 
   board = undefined;
   playerOne = undefined;
@@ -155,12 +147,7 @@ function aiAnimate(player1, ai, board) {
         ai.checkBoundary();
         player1.draw();
       } else {
-        winMessage.innerText = "Rambo wins!";
-        winMessage.style.display = "block";
-        spawnBtnAI.style.display = "block";
-        spawnBtnPlayer.style.display = "block";
-        playAgain.style.display = "block";
-        Board.stopTimer();
+        endGame("Rambo")
         return;
       }
       if (ai.alive && !player1.victory) {
@@ -172,12 +159,7 @@ function aiAnimate(player1, ai, board) {
         ai.break();
         // ai.makeMove();
       } else {
-        winMessage.innerText = "You win!";
-        winMessage.style.display = "block";
-        spawnBtnAI.style.display = "block";
-        spawnBtnPlayer.style.display = "block";
-        playAgain.style.display = "block";
-        Board.stopTimer();
+        endGame("Player")
         return; // 
       }
     }
@@ -186,32 +168,27 @@ function aiAnimate(player1, ai, board) {
 }
 
 function startAiGame() {
-  spawnBtnAI.style.display = "none";
-  spawnBtnPlayer.style.display = "none";
-  if (board) {
-    board.reset();
-  }
-  if (playerOne) {
-    playerOne.reset();
-  }
-  if (playerTwo) {
-    playerTwo.reset();
-  }
+
+  board && board.reset();
+  playerOne && playerOne.reset();
+  playerTwo && playerTwo.reset();
 
   board = undefined;
   playerOne = undefined;
   playerTwo = undefined;
 
   board = new Board();
-  console.log(Board.timer);
   playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
   playerTwo = new AI(aiSpawnX, aiSpawnY)
+
   Board.startTimer();
+
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
-  console.log(playerOne, playerTwo);
-  console.log(playerOne.currentPlace)
-  console.log(playerTwo.currentPlace)
+
+  // console.log(playerOne, playerTwo);
+  // console.log(playerOne.currentPlace)
+  // console.log(playerTwo.currentPlace)
 
   aiAnimate(playerOne, playerTwo, board);
 }
