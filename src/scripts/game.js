@@ -53,9 +53,12 @@ function localAnimate(player1, player2, board) {
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (!board.gameover) {
+    if (board.gameover) {
       board.draw();
+      return;
     }
+
+    board.draw();
 
     if (Board.shrinkCounter >= 6 && player1.alive && !player2.victory) {
 

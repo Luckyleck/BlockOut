@@ -42,8 +42,8 @@ class Board {
   static timer = 0;
   static shrinkCounter = 0;
 
-  static canvasCenterX = canvas.width/2
-  static canvasCenterY = canvas.height/2
+  static canvasCenterX = canvas.width / 2
+  static canvasCenterY = canvas.height / 2
 
   // Map total Width and Height
   static mapWidth = Board.map[0].length * Tile.size;
@@ -51,7 +51,7 @@ class Board {
 
   // Map Start x and y
   static gameFieldX = Board.canvasCenterX / 2 / 2 + 60; //300
-  static gameFieldY = Board.canvasCenterY / 4 ; //100
+  static gameFieldY = Board.canvasCenterY / 4; //100
 
   // Map End x and y
   static gameFieldEndX = (Board.map[0].length * Tile.size) + (Tile.size * 3)
@@ -67,7 +67,7 @@ class Board {
 
   constructor() {
     // this.tiles = []
-    this.gameover = false;
+    this.gameOver = false;
     for (let i = 0; i < Board.map.length; i++) {
       for (let j = 0; j < Board.map[i].length; j++) {
         if (Board.map[i][j] === " ") {
@@ -92,12 +92,12 @@ class Board {
     Board.map.forEach((row) => {
       // console.log(row)
       row.forEach((tile) => {
-   
+
         // Col first, then row
         if (tile instanceof Tile && tile.health === 3) {
           c.shadowBlur = 10;
           c.shadowColor = "black";
-          c.drawImage(grassFull,StartX + (tile.col * tile.size), StartY + (tile.row * tile.size), tile.size, tile.size)
+          c.drawImage(grassFull, StartX + (tile.col * tile.size), StartY + (tile.row * tile.size), tile.size, tile.size)
         } else if (tile instanceof Tile && tile.health === 2) {
           c.shadowBlur = 10;
           c.shadowColor = "black";
@@ -120,7 +120,7 @@ class Board {
       });
     });
 
-    
+
 
     // Draw red dot at game field (x, y)
     c.fillStyle = "red";
@@ -141,8 +141,8 @@ class Board {
 
     Board.shrinkCounter++;
 
-    if (Board.shrinkCounter >= 6) { 
-      Board.gameover = true;
+    if (Board.shrinkCounter >= 6) {
+      this.gameOver = true;
       return;
     }
 
@@ -198,8 +198,8 @@ class Board {
     Board.mapWidth = Board.map[0].length * Tile.size;
     Board.mapHeight = Board.map.length * Tile.size;
 
-    Board.gameFieldX+= 50;
-    Board.gameFieldY+= 50;
+    Board.gameFieldX += 50;
+    Board.gameFieldY += 50;
 
     Board.gameFieldEndX -= 50;
     Board.gamefieldEndY -= 50;
@@ -219,17 +219,49 @@ class Board {
   }
 
   reset() {
-    for (let i = 0; i < Board.map.length; i++) {
-      for (let j = 0; j < Board.map[i].length; j++) {
-        if (Board.map[i][j] instanceof Tile) {
-          Board.map[i][j] = " "
-        } else {
-          Board.map[i][j] = "-"
-        }
-      }
-    };
+    Board.map = [
+      ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "-"],
+      ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
+    ]
 
+    Board.timer = 0;
     Board.shrinkCounter = 0;
+
+    Board.canvasCenterX = canvas.width / 2
+    Board.canvasCenterY = canvas.height / 2
+
+    // Map total Width and Height
+    Board.mapWidth = Board.map[0].length * Tile.size;
+    Board.mapHeight = Board.map.length * Tile.size;
+
+    // Map Start x and y
+    Board.gameFieldX = Board.canvasCenterX / 2 / 2 + 60; //300
+    Board.gameFieldY = Board.canvasCenterY / 4; //100
+
+    // Map End x and y
+    Board.gameFieldEndX = (Board.map[0].length * Tile.size) + (Tile.size * 3)
+    Board.gameFieldEndY = (Board.map.length * Tile.size) + (Tile.size * 2)
+
+    // Playfield Width and Height
+    Board.playFieldWidth = Board.mapWidth - Tile.size * 2;
+    Board.playFieldHeight = Board.mapHeight - Tile.size * 2;
+
+    // Playfield Start x and y
+    Board.playFieldStartX = Board.gameFieldX + Tile.size; // 350;
+    Board.playFieldStartY = Board.gameFieldY + Tile.size; // 150
+
+
   }
 }
 
