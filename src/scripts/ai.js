@@ -278,7 +278,6 @@ class AI {
 
   checkBoundary() {
     const currentTile = this.getPlayerTile();
-    console.log('Current Tile is' + currentTile)
     if (currentTile instanceof Boundary) {
       this.alive = false;
     }

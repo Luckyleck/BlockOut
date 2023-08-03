@@ -89,6 +89,7 @@ function localAnimate(player1, player2, board) {
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         playAgain.style.display = "block"
+        Board.stopTimer();
         return; // stop the animation
       }
       if (player2.alive && !player1.victory) {
@@ -101,6 +102,7 @@ function localAnimate(player1, player2, board) {
         spawnBtnPlayer.style.display = "block"; // show the spawn button
         spawnBtnAI.style.display = "block"; // show the spawn button
         playAgain.style.display = "block";
+        Board.stopTimer();
         return; // stop the animation
       }
     }
@@ -158,6 +160,7 @@ function aiAnimate(player1, ai, board) {
         spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
         playAgain.style.display = "block";
+        Board.stopTimer();
         return;
       }
       if (ai.alive && !player1.victory) {
@@ -174,6 +177,7 @@ function aiAnimate(player1, ai, board) {
         spawnBtnAI.style.display = "block";
         spawnBtnPlayer.style.display = "block";
         playAgain.style.display = "block";
+        Board.stopTimer();
         return; // 
       }
     }
@@ -199,6 +203,7 @@ function startAiGame() {
   playerTwo = undefined;
 
   board = new Board();
+  console.log(Board.timer);
   playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
   playerTwo = new AI(aiSpawnX, aiSpawnY)
   Board.startTimer();

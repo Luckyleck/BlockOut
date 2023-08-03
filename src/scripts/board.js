@@ -40,6 +40,7 @@ class Board {
   ]
 
   static timer = 0;
+  static intervalId = null;
   static shrinkCounter = 0;
 
   static canvasCenterX = canvas.width / 2
@@ -210,12 +211,21 @@ class Board {
   }
 
   static startTimer() {
-    setInterval(() => {
-      Board.timer += 1;
-      if (Board.timer % 5 === 0) {
-        Board.shrinkPlayField();
-      }
-    }, 1000);
+    if (!Board.intervalId) {
+      Board.intervalId = setInterval(() => {
+        Board.timer += 1;
+        if (Board.timer % 5 === 0) {
+          Board.shrinkPlayField();
+        }
+      }, 1000);
+    }
+  }
+
+  static stopTimer() {
+    if (Board.intervalId) {
+      clearInterval(Board.intervalId);
+      Board.intervalId = null;
+    }
   }
 
   reset() {
