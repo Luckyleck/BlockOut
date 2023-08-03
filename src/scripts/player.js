@@ -1,5 +1,6 @@
 import Board from "./board.js"
 import Tile from "./tile.js"
+import Boundary from "./boundary.js"
 
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
@@ -229,7 +230,14 @@ class Player {
         } else {
             this.image = shovelRight;
         }
-    
+    }
+
+    checkBoundary() {
+        const currentTile = this.getPlayerTile();
+        console.log('Current Tile is' + currentTile)
+        if (currentTile instanceof Boundary) {
+            this.alive = false;
+        }
     }
 }
 

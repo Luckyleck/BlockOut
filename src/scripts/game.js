@@ -22,8 +22,6 @@ const playerTwoSpawnY = 675; // Board.mapHeight + (Tile.size / 2)
 const aiSpawnX = 825; // Board.mapWidth + Tile.size / 2
 const aiSpawnY = 625; // Board.mapHeight - Tile.size / 2
 
-
-
 playAgain.style.display = "none";
 winMessage.style.display = "none";
 
@@ -55,9 +53,32 @@ function localAnimate(player1, player2, board) {
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    board.draw();
+    if (!board.gameover) {
+      board.draw();
+    }
+
+    if (Board.shrinkCounter >= 6 && player1.alive && !player2.victory) {
+
+      if (player1.alive && !player2.victory) {
+        winMessage.innerText = "Blue wins!"
+        winMessage.style.display = "block"
+      }
+
+      if (player2.alive && !player1.victory) {
+        winMessage.innerText = "Red wins!"
+        winMessage.style.display = "block"
+      }
+      
+      spawnBtnPlayer.style.display = "block"; // show the spawn button
+      spawnBtnAI.style.display = "block"; // show the spawn button
+      playAgain.style.display = "block"
+      return;
+    }
+
     if (player1 && player2) {
       if (player1.alive && !player2.victory) {
+        player1.checkBoundary();
+        player2.checkBoundary();
         player1.draw();
       } else {
         winMessage.innerText = "Blue wins!"
@@ -68,6 +89,8 @@ function localAnimate(player1, player2, board) {
         return; // stop the animation
       }
       if (player2.alive && !player1.victory) {
+        player1.checkBoundary();
+        player2.checkBoundary();
         player2.draw();
       } else {
         winMessage.innerText = "Red Wins!";
@@ -117,9 +140,14 @@ function aiAnimate(player1, ai, board) {
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    board.draw();
+    if (!board.gameover) {
+      board.draw();
+    }
+    
     if (player1 && ai) {
       if (player1.alive && !ai.victory) {
+        player1.checkBoundary();
+        ai.checkBoundary();
         player1.draw();
       } else {
         winMessage.innerText = "Rambo wins!";
@@ -130,6 +158,8 @@ function aiAnimate(player1, ai, board) {
         return;
       }
       if (ai.alive && !player1.victory) {
+        player1.checkBoundary();
+        ai.checkBoundary();
         ai.draw();
         ai.makeMove();
         ai.makeMove();
@@ -168,6 +198,7 @@ function startAiGame() {
   board = new Board();
   playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
   playerTwo = new AI(aiSpawnX, aiSpawnY)
+  Board.startTimer();
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
   console.log(playerOne, playerTwo);

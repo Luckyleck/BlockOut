@@ -40,6 +40,7 @@ class Board {
   ]
 
   static timer = 0;
+  static shrinkCounter = 0;
 
   static canvasCenterX = canvas.width/2
   static canvasCenterY = canvas.height/2
@@ -66,6 +67,7 @@ class Board {
 
   constructor() {
     // this.tiles = []
+    this.gameover = false;
     for (let i = 0; i < Board.map.length; i++) {
       for (let j = 0; j < Board.map[i].length; j++) {
         if (Board.map[i][j] === " ") {
@@ -118,6 +120,8 @@ class Board {
       });
     });
 
+    
+
     // Draw red dot at game field (x, y)
     c.fillStyle = "red";
     c.beginPath();
@@ -134,6 +138,13 @@ class Board {
   }
 
   static shrinkPlayField() {
+
+    Board.shrinkCounter++;
+
+    if (Board.shrinkCounter >= 6) { 
+      Board.gameover = true;
+      return;
+    }
 
     // Remove top row
     Board.map.shift();
@@ -196,8 +207,6 @@ class Board {
     Board.playFieldStartX += 50;
     Board.playFieldStartY += 50;
 
-    
-
   }
 
   static startTimer() {
@@ -218,7 +227,9 @@ class Board {
           Board.map[i][j] = "-"
         }
       }
-    }
+    };
+
+    Board.shrinkCounter = 0;
   }
 }
 
