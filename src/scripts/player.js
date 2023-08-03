@@ -1,6 +1,6 @@
 import Board from "./board.js"
 import Tile from "./tile.js"
-import Playertwo from "./playertwo.js"
+import Boundary from "./boundary.js"
 
 const canvas = document.getElementById('canvas')
 const c = canvas.getContext('2d')
@@ -138,7 +138,7 @@ class Player {
     getPlayerTile() {
         let row =  this.currentTile()[0]
         let col = this.currentTile()[1]
-        return Board.map[row][col]
+        return Board?.map[row][col]
     }
 
     getAnyTile(row, col) {
@@ -195,8 +195,6 @@ class Player {
       return [row, col]
     }
 
-    // Player dead logic
-
     isDead() {
         let tile = this.getPlayerTile();
    
@@ -232,7 +230,13 @@ class Player {
         } else {
             this.image = shovelRight;
         }
-    
+    }
+
+    checkBoundary() {
+        const currentTile = this.getPlayerTile();
+        if (currentTile instanceof Boundary) {
+            this.alive = false;
+        }
     }
 }
 

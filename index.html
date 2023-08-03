@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="reset" href="./dist/reset.css" />
+  <link rel="stylesheet" href="./dist/reset.css" />
   <link rel="stylesheet" href="./dist/main.css" />
   <link rel="icon" type="image/x-icon" href="./images/favicon/cube_no_back.ico">
   <link rel="shovels" type="html" href="./images.html">
@@ -16,55 +16,78 @@
 <body>
   <div class="main">
 
-    <aside>
-
+    <div class="left">
       <div class="header">
-        <h1 id="title">Block-Out</h1>
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/Luckyleck/JS-Project">
-          <img id="github" src="./images/misc/github_no_middle.png" alt="github link">
-        </a>
-        <h2>Made by Alex Lecky</h2>
+        <h1>Block-Out</h1>
+        <div class="links">
+          <a href="https://github.com/Luckyleck/JS-Project">
+            <img id="github" src="./images/misc/github_no_middle.png" alt="github link" />
+          </a>
+          <a href="https://www.linkedin.com/in/alexthelecky1875273/">
+            <img id="linkedIn" src="./images/misc/linked-in-logo.png" alt="linked-in-logo" />
+          </a>
+          <h2>Made by Alex Lecky</h2>
+        </div>
       </div>
 
       <div class="welcome">
         <p>
           Welcome to Block-Out. In this game, you and your opponent are on a
-          floating patch of earth in the sky. </br></br>To win the game, you must break the
+          floating patch of earth in the sky.
+          <br />
+          <br />
+          To win the game, you must break the
           ground beneath your opponent while also being careful not to fall into any holes yourself.
         </p>
       </div>
 
       <div class="controls">
-        <h2>Player 1 Controls</h2>
-        <div>
-          <p>Move</p>
-          <p>Break</p>
+        <div class="player-1">
+          <h2>Player 1 Controls</h2>
+          <div class="keys">
+            <p>Move</p>
+            <p>Break</p>
+          </div>
+          <div class="player-controls">
+            <img src='./images/misc/WASD_color.png' alt="movement player 1">
+            <img id="spacebar" src='./images/misc/spacebar-color.png' alt="break player 1">
+          </div>
         </div>
-        <img id="wasd" src='./images/misc/WASD_color.png'>
-        <img id="spacebar" src='./images/misc/spacebar-color.png'>
-        <h2>Player 2 Controls</h2>
-        <img id="arrows" src='./images/misc/Arrows_color.png'>
-        <img id="return" src='./images/misc/return_color.png'>
+        <div class="player-2">
+          <h2>Player 2 Controls</h2>
+          <div class="player-controls">
+            <img src='./images/misc/Arrows_color.png' alt="movement player 2">
+            <img id="enter-key" src='./images/misc/return_color.png' alt="break player 2">
+          </div>
+        </div>
       </div>
 
       <div class="bottom">
-        <p>
-          Player 1 is red </br> Player 2 is blue</br>
-          Rambo (AI) is Yellow.
+        <p>Player 1 is red</p>
+        <p>Player 2 is blue</p>
+        <p>Rambo (AI) is yellow</p>
         </p>
       </div>
-    </aside>
-    <button id="spawn-btn-player">Multiplayer</button>
-    <button id="spawn-btn-ai">Single Player</button>
-    <button id="play-again">Play Again?</button>
+    </div>
 
-    <img id="playerImg" src="./images/misc/No_background_shovel.png" style="display: none;">
-    <canvas id="canvas" height="800" width="1200">Canvas is broken</canvas>
+    <!-- <img id="playerImg" src="./images/misc/No_background_shovel.png" style="display: none;"> -->
+    
+    <div class="right">
+      
+      <div class="game-buttons">
+        <button id="spawn-btn-player">Multiplayer</button>
+        <button id="spawn-btn-ai">Single Player</button>
+      </div>
+      
+      <h1 id="win-message" class="win-message"></h1>
 
-    <!-- <audio id="audio" src="https://www.youtube.com/watch?v=BWe_PxKuu9c" autoplay></audio> -->
+      <div class="play-again">
+          <button id="play-again">Play Again?</button>
+      </div>
+
+      <canvas id="canvas" height="800" width="1200">Canvas is broken</canvas>
+
+    </div>
   </div>
 </body>
 
