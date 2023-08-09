@@ -42,6 +42,7 @@ class Board {
   static timer = 0;
   static intervalId = null;
   static shrinkCounter = 0;
+  static gameover = false
 
   static canvasCenterX = canvas.width / 2
   static canvasCenterY = canvas.height / 2
@@ -67,8 +68,7 @@ class Board {
   static playFieldStartY = Board.gameFieldY + Tile.size; // 150
 
   constructor() {
-    // this.tiles = []
-    this.gameOver = false;
+    // this.gameOver = false;
     for (let i = 0; i < Board.map.length; i++) {
       for (let j = 0; j < Board.map[i].length; j++) {
         if (Board.map[i][j] === " ") {
@@ -143,7 +143,7 @@ class Board {
     Board.shrinkCounter++;
 
     if (Board.shrinkCounter >= 6) {
-      this.gameOver = true;
+      Board.gameover = true;
       return;
     }
 
@@ -208,6 +208,8 @@ class Board {
     Board.playFieldStartX += 50;
     Board.playFieldStartY += 50;
 
+    console.log(Board.gameover);
+
   }
 
   static startTimer() {
@@ -247,6 +249,7 @@ class Board {
 
     Board.timer = 0;
     Board.shrinkCounter = 0;
+    Board.gameover = false;
 
     Board.canvasCenterX = canvas.width / 2
     Board.canvasCenterY = canvas.height / 2
@@ -276,28 +279,4 @@ class Board {
 }
 
 export default Board;
-
-
-// for (let i = 0; i < Board.map[0].length; i++) {
-    //   const oldRow = Board.map[0][i].row;
-    //   const oldCol = Board.map[0][i].col;
-    //   Board.map[0][i] = new Boundary(oldRow + 1, oldCol);
-    // }
-
-    // Update map width and height
-    // Board.mapWidth = Board.map[0].length * Tile.size;
-    // Board.mapHeight = Board.map.length * Tile.size;
-
-    // // Update game field end x and y
-    // Board.gameFieldEndX = Board.mapWidth + (Tile.size * 3);
-    // Board.gameFieldEndY = Board.mapHeight + (Tile.size * 2);
-
-    // // Update playfield width and height
-    // Board.playFieldWidth = Board.mapWidth - Tile.size * 2;
-    // Board.playFieldHeight = Board.mapHeight - Tile.size * 2;
-
-    // // Update playfield start x and y
-    // Board.playFieldStartX = Board.gameFieldX + Tile.size;
-    // Board.playFieldStartY = Board.gameFieldY + Tile.size;
-
 
