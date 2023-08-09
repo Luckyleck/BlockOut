@@ -43,13 +43,8 @@ let playerOne;
 let playerTwo;
 let board;
 
-function endGame(winner) {
-  winMessage.innerText = winner === 'draw' ? `It's a draw` : `${winner} wins!`;
-  winMessage.style.display = "block";
-  spawnBtnPlayer.style.display = "block";
-  spawnBtnAI.style.display = "block";
-  playAgain.style.display = "block";
-  Board.stopTimer();
+function clearButtons() {
+  [playAgain, winMessage, spawnBtnPlayer, spawnBtnAI].forEach(el => el.style.display = "none");
 }
 
 function clearButtons() {
@@ -185,10 +180,6 @@ function startAiGame() {
 
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
-
-  // console.log(playerOne, playerTwo);
-  // console.log(playerOne.currentPlace)
-  // console.log(playerTwo.currentPlace)
 
   aiAnimate(playerOne, playerTwo, board);
 }
