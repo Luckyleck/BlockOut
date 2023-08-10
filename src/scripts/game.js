@@ -43,13 +43,8 @@ let playerOne;
 let playerTwo;
 let board;
 
-function endGame (winner) {
-  winMessage.innerText = `${winner} wins!`;
-  winMessage.style.display = "block";
-  spawnBtnPlayer.style.display = "block";
-  spawnBtnAI.style.display = "block";
-  playAgain.style.display = "block";
-  Board.stopTimer();
+function clearButtons() {
+  [playAgain, winMessage, spawnBtnPlayer, spawnBtnAI].forEach(el => el.style.display = "none");
 }
 
 function clearButtons() {
@@ -59,54 +54,46 @@ function clearButtons() {
   spawnBtnAI.style.display = "none";
 }
 
+
+// check boundary is not working
+
 function localAnimate(player1, player2, board) {
 
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (board.gameover) {
+    if (Board.gameover && player1.alive && player2.alive) {
       board.draw();
+      endGame('draw');
       return;
     }
 
     board.draw();
 
-    if (Board.shrinkCounter >= 6 && player1.alive && !player2.victory) {
+    player1.checkBoundary();
+    player2.checkBoundary();
 
-      if (player1.alive && !player2.victory) {
-        winMessage.innerText = "Blue wins!"
-        winMessage.style.display = "block"
-      }
+    player1.alive && player1.draw();
+    player2.alive && player2.draw();
 
-      if (player2.alive && !player1.victory) {
-        winMessage.innerText = "Red wins!"
-        winMessage.style.display = "block"
-      }
-      
-      spawnBtnPlayer.style.display = "block"; // show the spawn button
-      spawnBtnAI.style.display = "block"; // show the spawn button
-      playAgain.style.display = "block"
+    if (!player1.alive && !player2.alive) {
+      endGame('draw');
       return;
     }
 
-    if (player1 && player2) {
-      if (player1.alive && !player2.victory) {
-        player1.checkBoundary();
-        player2.checkBoundary();
-        player1.draw();
-      } else {
-        endGame("Blue")
-        return; // stop the animation
-      }
-      if (player2.alive && !player1.victory) {
-        player1.checkBoundary();
-        player2.checkBoundary();
-        player2.draw();
-      } else {
-        endGame("Red")
-        return; // stop the animation
-      }
+    if (!player1.alive) {
+      player2.draw();
+      endGame('Blue');
+      return;
     }
+
+    if (!player2.alive) {
+      player1.draw();
+      endGame('Red');
+      return;
+    }
+
+
     localAnimate(player1, player2, board);
   });
 }
@@ -137,32 +124,40 @@ function aiAnimate(player1, ai, board) {
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (!board.gameover) {
+    if (Board.gameover && player1.alive && ai.alive) {
       board.draw();
+      endGame('draw');
     }
-    
-    if (player1 && ai) {
-      if (player1.alive && !ai.victory) {
-        player1.checkBoundary();
-        ai.checkBoundary();
-        player1.draw();
-      } else {
-        endGame("Rambo")
-        return;
-      }
-      if (ai.alive && !player1.victory) {
-        player1.checkBoundary();
-        ai.checkBoundary();
-        ai.draw();
-        ai.makeMove();
-        ai.makeMove();
-        ai.break();
-        // ai.makeMove();
-      } else {
-        endGame("Player")
-        return; // 
-      }
+
+    board.draw();
+
+    player1.checkBoundary();
+    ai.checkBoundary();
+
+    player1.alive && player1.draw();
+    ai.alive && ai.draw();
+    ai.makeMove();
+    ai.makeMove();
+    ai.break();
+
+    if (!player1.alive && !ai.alive) {
+      endGame('draw');
+      return;
     }
+
+    if (!player1.alive) {
+      ai.draw();
+      endGame('Rambo');
+      return;
+    }
+
+    if (!ai.alive) {
+      player1.draw();
+      endGame('Player');
+      return;
+    }
+
+
     aiAnimate(player1, ai, board);
   });
 }
@@ -186,14 +181,71 @@ function startAiGame() {
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
 
-  // console.log(playerOne, playerTwo);
-  // console.log(playerOne.currentPlace)
-  // console.log(playerTwo.currentPlace)
-
   aiAnimate(playerOne, playerTwo, board);
 }
 
 console.log(Board.mapWidth, Board.mapHeight, Board.gameFieldEndX, Board.gameFieldEndY)
+
+
+
+
+    // if (!board.gameover) {
+    //   board.draw();
+    // }
+
+    // if (player1 && ai) {
+    //   if (player1.alive && !ai.victory) {
+    //     player1.checkBoundary();
+    //     ai.checkBoundary();
+    //     player1.draw();
+    //   } else {
+    //     endGame("Rambo")
+    //     return;
+    //   }
+    //   if (ai.alive && !player1.victory) {
+    //     player1.checkBoundary();
+    //     ai.checkBoundary();
+    //     ai.draw();
+    //     ai.makeMove();
+    //     ai.makeMove();
+    //     ai.break();
+    //     // ai.makeMove();
+    //   } else {
+    //     endGame("Player")
+    //     return; //
+    //   }
+    // }
+
+    // player1.checkBoundary() && player1.alive && player1.draw();
+    // player2.checkBoundary() && player2.alive && player2.draw();
+
+    // if (!player1.alive) {
+    //   endGame('Blue');
+    //   return;
+    // }
+
+    // if (!player2.alive) {
+    //   endGame('Red');
+    //   return;
+    // }
+    
+    // if (player1 && player2)
+    // if (player1.alive && !player2.victory) {
+    //   player1.checkBoundary();
+    //   player2.checkBoundary();
+    //   player1.draw();
+    // } else {
+    //   endGame("Blue")
+    //   return; // stop the animation
+    // }
+    // if (player2.alive && !player1.victory) {
+    //   player1.checkBoundary();
+    //   player2.checkBoundary();
+    //   player2.draw();
+    // } else {
+    //   endGame("Red")
+    //   return; // stop the animation
+    // }
 
 
 
