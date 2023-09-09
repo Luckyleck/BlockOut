@@ -1,9 +1,7 @@
 import Board from "./board.js";
 import Player from "./player.js";
 import Playertwo from "./playertwo.js";
-import Tile from "./tile.js";
 import AI from "./ai.js";
-import Game from "./play.js"
 
 
 const canvas = document.getElementById("canvas");
@@ -13,21 +11,31 @@ const c = canvas.getContext("2d");
 const spawnBtnPlayer = document.getElementById("spawn-btn-player");
 const spawnBtnAI = document.getElementById("spawn-btn-ai")
 const playAgain = document.getElementById("play-again")
-playAgain.style.display = "none"
+const winMessage = document.getElementById("win-message")
+
+const playerOneSpawnX = 285; // Board.gameFieldX + (Tile.size * 1.5), 
+const playerOneSpawnY = 175; // Board.gameFieldY + (Tile.size * 1.5)
+const playerTwoSpawnX = 935; // Board.mapWidth + (Tile.size * 2.7)
+const playerTwoSpawnY = 675; // Board.mapHeight + (Tile.size / 2)
+const aiSpawnX = 825; // Board.mapWidth + Tile.size / 2
+const aiSpawnY = 625; // Board.mapHeight - Tile.size / 2
+
+playAgain.style.display = "none";
+winMessage.style.display = "none";
 
 spawnBtnPlayer.addEventListener("click", () => {
   startPlayerGame();
-  playAgain.style.display = "none"
+  clearButtons();
 })
 
 spawnBtnAI.addEventListener("click", () => {
   startAiGame();
-  playAgain.style.display = "none";
+  clearButtons();
 })
 
 playAgain.addEventListener('click', () => {
   playerTwo instanceof AI ? startAiGame() : startPlayerGame();
-  playAgain.style.display = "none"
+  clearButtons();
 })
 
 
@@ -35,62 +43,74 @@ let playerOne;
 let playerTwo;
 let board;
 
+function clearButtons() {
+  [playAgain, winMessage, spawnBtnPlayer, spawnBtnAI].forEach(el => el.style.display = "none");
+}
+
+function endGame(winner) {
+  winMessage.innerText = `${winner} wins!`;
+  winMessage.style.display = "block";
+  spawnBtnPlayer.style.display = "block";
+  spawnBtnAI.style.display = "block";
+  playAgain.style.display = "block";
+  Board.stopTimer();
+}
+
 function localAnimate(player1, player2, board) {
-  
+
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    board.draw();
-    if (player1 && player2) {
-      if (player1.alive && !player2.victory) {
-        player1.draw();
-      } else {
-        c.font = "100px Georgia";
-        c.fillStyle = "Orange";
-        c.fillText("Blue Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
-        spawnBtnPlayer.style.display = "block"; // show the spawn button
-        spawnBtnAI.style.display = "block"; // show the spawn button
-        playAgain.style.display = "block"
-        return; // stop the animation
-      }
-      if (player2.alive && !player1.victory) {
-        player2.draw();
-      } else {
-        c.font = "100px Georgia";
-        c.fillStyle = "Orange";
-        c.fillText("Red Wins!", Board.mapWidth / 2 - 20, canvas.height / 2);
-        spawnBtnPlayer.style.display = "block"; // show the spawn button
-        spawnBtnAI.style.display = "block"; // show the spawn button
-        playAgain.style.display = "block";
-        return; // stop the animation
-      }
+    if (Board.gameover && player1.alive && player2.alive) {
+      board.draw();
+      endGame('draw');
+      return;
     }
+
+    board.draw();
+
+    player1.checkBoundary();
+    player2.checkBoundary();
+
+    player1.alive && player1.draw();
+    player2.alive && player2.draw();
+
+    if (!player1.alive && !player2.alive) {
+      endGame('draw');
+      return;
+    }
+
+    if (!player1.alive) {
+      player2.draw();
+      endGame('Blue');
+      return;
+    }
+
+    if (!player2.alive) {
+      player1.draw();
+      endGame('Red');
+      return;
+    }
+
+
     localAnimate(player1, player2, board);
   });
 }
 
 function startPlayerGame() {
-  // debugger
-  spawnBtnPlayer.style.display = "none";
-  spawnBtnAI.style.display = "none";
-  if (board) {
-    board.reset();
-  }
-  if (playerOne) {
-    playerOne.reset();
-  }
-  if (playerTwo) {
-    playerTwo.reset();
-  }
+
+  board && board.reset();
+  playerOne && playerOne.reset();
+  playerTwo && playerTwo.reset();
 
   board = undefined;
   playerOne = undefined;
   playerTwo = undefined;
-  
-  board = new Board();
-  playerOne = new Player(Board.gameFieldX + (Tile.size * 1.5), Board.gameFieldY + (Tile.size * 1.5))
-  playerTwo = new Playertwo(Board.mapWidth + (Tile.size * 2.7), Board.mapHeight + (Tile.size / 2))
 
+  board = new Board();
+  playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
+  playerTwo = new Playertwo(playerTwoSpawnX, playerTwoSpawnY)
+  Board.startTimer();
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
   console.log(playerOne, playerTwo)
@@ -103,77 +123,67 @@ function aiAnimate(player1, ai, board) {
   window.requestAnimationFrame(() => {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    board.draw();
-    if (player1 && ai) {
-      if (player1.alive && !ai.victory) {
-     player1.draw();
-      } else {
-        c.font = "100px system-ui";
-        c.fillStyle = "Orange";
-        c.fillText("Rambo wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
-        spawnBtnAI.style.display = "block";
-        spawnBtnPlayer.style.display = "block";
-        playAgain.style.display = "block";
-        return; 
-      }
-      if (ai.alive && !player1.victory) {
-        ai.draw();
-        ai.makeMove();
-        ai.makeMove();
-        ai.break();
-        // ai.makeMove();
-      } else {
-        c.font = "100px Georgia";
-        c.fillStyle = "Orange";
-        c.fillText("Player wins!", Board.mapWidth / 2 - 50, canvas.height / 2);
-        spawnBtnAI.style.display = "block"; 
-        spawnBtnPlayer.style.display = "block";
-        playAgain.style.display = "block";
-        return; // 
-      }
+    if (Board.gameover && player1.alive && ai.alive) {
+      board.draw();
+      endGame('draw');
     }
+
+    board.draw();
+
+    player1.checkBoundary();
+    ai.checkBoundary();
+
+    player1.alive && player1.draw();
+    ai.alive && ai.draw();
+    ai.makeMove();
+    ai.makeMove();
+    ai.break();
+
+    if (!player1.alive && !ai.alive) {
+      endGame('draw');
+      return;
+    }
+
+    if (!player1.alive) {
+      ai.draw();
+      endGame('Rambo');
+      return;
+    }
+
+    if (!ai.alive) {
+      player1.draw();
+      endGame('Player');
+      return;
+    }
+
+
     aiAnimate(player1, ai, board);
   });
 }
 
 function startAiGame() {
-  // debugger
-  spawnBtnAI.style.display = "none";
-  spawnBtnPlayer.style.display = "none";
-  if (board) {
-    board.reset();
-  }
-  if (playerOne) {
-    playerOne.reset();
-  }
-  if (playerTwo) {
-    playerTwo.reset();
-  }
+
+  board && board.reset();
+  playerOne && playerOne.reset();
+  playerTwo && playerTwo.reset();
 
   board = undefined;
   playerOne = undefined;
   playerTwo = undefined;
 
   board = new Board();
-  playerOne = new Player (
-    Board.gameFieldX + Tile.size * 1.5,
-    Board.gameFieldY + Tile.size * 1.5
-  );
-  playerTwo = new AI (
-    Board.mapWidth + (Tile.size * 0.5),
-    Board.mapHeight - Tile.size / 2
-  );
+  playerOne = new Player(playerOneSpawnX, playerOneSpawnY)
+  playerTwo = new AI(aiSpawnX, aiSpawnY)
+
+  Board.startTimer();
 
   playerOne.currentPlace.occupied = true;
   playerTwo.currentPlace.occupied = true;
-  console.log(playerOne, playerTwo);
 
   aiAnimate(playerOne, playerTwo, board);
 }
 
 console.log(Board.mapWidth, Board.mapHeight, Board.gameFieldEndX, Board.gameFieldEndY)
-
-export default spawnBtnPlayer
 
 
 
