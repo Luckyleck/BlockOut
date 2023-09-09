@@ -188,3 +188,65 @@ console.log(Board.mapWidth, Board.mapHeight, Board.gameFieldEndX, Board.gameFiel
 
 
 
+    // if (!board.gameover) {
+    //   board.draw();
+    // }
+
+    // if (player1 && ai) {
+    //   if (player1.alive && !ai.victory) {
+    //     player1.checkBoundary();
+    //     ai.checkBoundary();
+    //     player1.draw();
+    //   } else {
+    //     endGame("Rambo")
+    //     return;
+    //   }
+    //   if (ai.alive && !player1.victory) {
+    //     player1.checkBoundary();
+    //     ai.checkBoundary();
+    //     ai.draw();
+    //     ai.makeMove();
+    //     ai.makeMove();
+    //     ai.break();
+    //     // ai.makeMove();
+    //   } else {
+    //     endGame("Player")
+    //     return; //
+    //   }
+    // }
+
+    // player1.checkBoundary() && player1.alive && player1.draw();
+    // player2.checkBoundary() && player2.alive && player2.draw();
+
+    // if (!player1.alive) {
+    //   endGame('Blue');
+    //   return;
+    // }
+
+    // if (!player2.alive) {
+    //   endGame('Red');
+    //   return;
+    // }
+    
+    // if (player1 && player2)
+    // if (player1.alive && !player2.victory) {
+    //   player1.checkBoundary();
+    //   player2.checkBoundary();
+    //   player1.draw();
+    // } else {
+    //   endGame("Blue")
+    //   return; // stop the animation
+    // }
+    // if (player2.alive && !player1.victory) {
+    //   player1.checkBoundary();
+    //   player2.checkBoundary();
+    //   player2.draw();
+    // } else {
+    //   endGame("Red")
+    //   return; // stop the animation
+    // }
+
+
+
+
+

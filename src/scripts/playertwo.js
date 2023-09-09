@@ -1,5 +1,6 @@
 import Board from "./board.js";
 import Tile from "./tile.js";
+import Boundary from "./boundary.js"
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
@@ -63,7 +64,7 @@ class Playertwo {
           }
           break;
         case "ArrowDown":
- 
+
           this.lastKey = "ArrowDown";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x, this.y + 50);
@@ -78,7 +79,7 @@ class Playertwo {
           }
           break;
         case "ArrowRight":
-      
+
           this.lastKey = "ArrowRight";
           nowTile = this.getPlayerTile();
           nextTile = this.getAnyTileXY(this.x + 50, this.y);
@@ -220,17 +221,24 @@ class Playertwo {
 
   pickImage() {
 
-        if (this.direction === 'right') {
-            this.image = shovelRight;
-        } else if (this.direction === 'left') {
-            this.image = shovelLeft;
-        } else if (this.direction === 'down') {
-            this.image = shovelDown;
-        } else {
-            this.image = shovelRight;
-        }
-    
+    if (this.direction === 'right') {
+      this.image = shovelRight;
+    } else if (this.direction === 'left') {
+      this.image = shovelLeft;
+    } else if (this.direction === 'down') {
+      this.image = shovelDown;
+    } else {
+      this.image = shovelRight;
     }
+
+  }
+
+  checkBoundary() {
+    const currentTile = this.getPlayerTile();
+    if (currentTile instanceof Boundary) {
+      this.alive = false;
+    }
+  }
 }
 
 export default Playertwo;

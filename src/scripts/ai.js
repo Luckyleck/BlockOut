@@ -1,5 +1,6 @@
 import Board from "./board.js";
 import Tile from "./tile.js";
+import Boundary from "./boundary.js"
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
@@ -272,6 +273,13 @@ class AI {
       this.image = shovelDown;
     } else {
       this.image = shovelLeft;
+    }
+  }
+
+  checkBoundary() {
+    const currentTile = this.getPlayerTile();
+    if (currentTile instanceof Boundary) {
+      this.alive = false;
     }
   }
 }
