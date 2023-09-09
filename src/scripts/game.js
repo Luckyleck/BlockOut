@@ -47,16 +47,6 @@ function clearButtons() {
   [playAgain, winMessage, spawnBtnPlayer, spawnBtnAI].forEach(el => el.style.display = "none");
 }
 
-function clearButtons() {
-  playAgain.style.display = "none"
-  winMessage.style.display = "none";
-  spawnBtnPlayer.style.display = "none";
-  spawnBtnAI.style.display = "none";
-}
-
-
-// check boundary is not working
-
 function localAnimate(player1, player2, board) {
 
   window.requestAnimationFrame(() => {
