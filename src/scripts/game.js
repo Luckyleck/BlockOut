@@ -47,6 +47,15 @@ function clearButtons() {
   [playAgain, winMessage, spawnBtnPlayer, spawnBtnAI].forEach(el => el.style.display = "none");
 }
 
+function endGame(winner) {
+  winMessage.innerText = `${winner} wins!`;
+  winMessage.style.display = "block";
+  spawnBtnPlayer.style.display = "block";
+  spawnBtnAI.style.display = "block";
+  playAgain.style.display = "block";
+  Board.stopTimer();
+}
+
 function localAnimate(player1, player2, board) {
 
   window.requestAnimationFrame(() => {
