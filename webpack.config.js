@@ -5,6 +5,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
   // ... other configuration options ...
+  entry: [
+    // path.resolve(__dirname, 'src', 'index.js'),
+    path.resolve(__dirname, 'src', 'index.scss')
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'), // bundled file in dist/
+    filename: '[name].js'
+  },
   module: {
     rules: [
       {
