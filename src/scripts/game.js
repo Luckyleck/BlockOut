@@ -48,15 +48,11 @@ function clearButtons() {
 }
 
 function endGame(winner) {
-<<<<<<< HEAD
-  winMessage.innerText = winner === 'draw' ? `It's a Draw!`:`${winner} Wins!`;
-=======
   if (winner == 'draw') {
     winMessage.innerText = `It's a draw!`;
   } else {
     winMessage.innerText = `${winner} wins!`;
   }
->>>>>>> 270ffb88c3f7f372482eb0623f23af317a86b35b
   winMessage.style.display = "block";
   spawnBtnPlayer.style.display = "block";
   spawnBtnAI.style.display = "block";
