@@ -1,5 +1,10 @@
-import Board from "./scripts/board.js"
-import Game from "./scripts/game.js"
+import Game from './scripts/core/game.js';
 
-// Game will initialize when the HTML loads and event listeners will be set up
-console.log("Game initialized");
+// Initialize the game when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Initializing Block-Out game...');
+  
+  // Create the game instance - this will trigger the loading of assets
+  // and setup the game
+  const game = new Game();
+});
