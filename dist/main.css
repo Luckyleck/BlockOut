@@ -27,7 +27,6 @@
   font-family: inherit;
   padding: 1%;
   top: 45%;
-  left: 48.2%;
   width: 500px;
   text-align: center;
   font-size: 80px;
@@ -215,6 +214,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  z-index: 9999;
 }
 
 #spawn-btn-player {
@@ -252,7 +252,7 @@ body {
 #play-again {
   position: absolute;
   top: 60%;
-  left: 56%;
+  left: 41%;
   background-color: #d400ff;
   color: #ffffff;
   border: 2px solid rgb(15, 15, 15);
