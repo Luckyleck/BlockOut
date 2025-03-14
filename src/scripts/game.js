@@ -189,6 +189,34 @@ function startAiGame() {
 
 console.log(Board.mapWidth, Board.mapHeight, Board.gameFieldEndX, Board.gameFieldEndY)
 
+// Add this at the end of game.js
+function init() {
+  // Set up button event listeners
+  spawnBtnPlayer.addEventListener("click", () => {
+    startPlayerGame();
+    clearButtons();
+  });
+
+  spawnBtnAI.addEventListener("click", () => {
+    startAiGame();
+    clearButtons();
+  });
+
+  playAgain.addEventListener('click', () => {
+    playerTwo instanceof AI ? startAiGame() : startPlayerGame();
+    clearButtons();
+  });
+
+  // Hide buttons that should start hidden
+  playAgain.style.display = "none";
+  winMessage.style.display = "none";
+}
+
+// Export the init function
+export default {
+  init
+};
+
 
 
 

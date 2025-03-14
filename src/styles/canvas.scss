@@ -1,12 +1,39 @@
-#canvas {
-	float: right;
-	margin-right: 25px;
-	margin-top: 25px;
-	background-image: url('https://images.pexels.com/photos/7060307/pexels-photo-7060307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-	background-repeat: no-repeat;
+/* Right side */
+.right {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 5px;
+	align-self: center;
+	height: 90%;
+	width: 70%;
+	position: relative;
+  }
+  
+  #canvas {
+	background-image: url('../images/misc/canvas-background.png');
 	background-size: cover;
-	width: 80vw;
-	height: 47vw;
+	height: 100%;
+	width: 100%;
 	border: 3px solid black;
 	border-radius: 10px;
-}
+  }
+  
+  .win-message {
+	position: absolute;
+	font-weight: bold;
+	font-family: inherit;
+	padding: 1%;
+	top: 45%;
+	left: 48.2%;
+	width: 500px;
+	text-align: center;
+	font-size: 80px;
+	background-color: #d400ff;
+	border-radius: 10px;
+	color: white;
+	border: 2px solid black;
+  }
+  
+  #point {
+	position: absolute;
+  }
